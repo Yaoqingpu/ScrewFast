@@ -1,4 +1,4 @@
----
+﻿---
 import AuthBtn from '@components/ui/buttons/AuthBtn.astro';
 import ContactIconBlock from '@components/ui/blocks/ContactIconBlock.astro';
 import TextInput from '@components/ui/forms/input/TextInput.astro';
@@ -6,62 +6,34 @@ import EmailContactInput from '@components/ui/forms/input/EmailContactInput.astr
 import PhoneInput from '@components/ui/forms/input/PhoneInput.astro';
 import TextAreaInput from '@components/ui/forms/input/TextAreaInput.astro';
 import Icon from '@components/ui/icons/Icon.astro';
-import { getMarketingLocale } from '@utils/locale';
 
-const locale = getMarketingLocale(Astro.url.pathname, Astro.currentLocale);
-
-const copy =
-  locale === 'fr'
-    ? {
-        title: 'Contactez-nous',
-        subTitle:
-          "Vous avez des questions ou souhaitez discuter d'un projet ? Contactez-nous et laissons-nous élaborer la solution parfaite avec nos outils et services.",
-        formTitle: 'Remplissez le formulaire ci-dessous',
-        formSubTitle:
-          'Nous vous répondrons dans un délai de 1 à 2 jours ouvrables.',
-        firstName: 'Prénom',
-        lastName: 'Nom',
-        details: 'Détails',
-        send: 'Envoyer un message',
-        demoMessage:
-          'Merci ! (Démo — branchez un endpoint pour recevoir de vrais messages.)',
-        knowledgeHeading: 'Base de connaissances',
-        knowledgeContent:
-          'Parcourez tous nos articles de base de connaissances.',
-        knowledgeLink: 'Visiter les guides et tutoriels',
-        faqHeading: 'FAQ',
-        faqContent:
-          'Explorez notre FAQ pour des réponses rapides et claires aux questions courantes.',
-        faqLink: 'Visiter la FAQ',
-        officeHeading: 'Visitez notre bureau',
-        officeContent: 'ScrewFast UK',
-        emailHeading: 'Contactez-nous par e-mail',
-        emailContent: 'Préférez-vous le texte écrit ? Envoyez-nous un e-mail à',
-      }
-    : {
-        title: 'Contact us',
-        subTitle:
-          "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.",
-        formTitle: 'Fill in the form below',
-        formSubTitle: "We'll get back to you in 1-2 business days.",
-        firstName: 'First Name',
-        lastName: 'Last Name',
-        details: 'Details',
-        send: 'Send Message',
-        demoMessage:
-          'Thanks! (Demo only — wire a form endpoint to receive real messages.)',
-        knowledgeHeading: 'Knowledgebase',
-        knowledgeContent: 'Browse through all of our knowledgebase articles.',
-        knowledgeLink: 'Visit guides & tutorials',
-        faqHeading: 'FAQ',
-        faqContent:
-          'Explore our FAQ for quick, clear answers to common queries.',
-        faqLink: 'Visit FAQ',
-        officeHeading: 'Visit our office',
-        officeContent: 'UK ScrewFast',
-        emailHeading: 'Contact us by email',
-        emailContent: 'Prefer the written word? Drop us an email at',
-      };
+const copy = {
+  formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || '',
+  title: 'Request a Quote (RFQ)',
+  subTitle:
+    'Paste your size list — tube OD or thread, grade, quantity, destination port. A factory quote comes back in 1–2 business days: price, ship date, packing. No account, no charge, no obligation.',
+  formTitle: 'RFQ form',
+  formSubTitle:
+    'One line per item is enough: size, material, quantity, port. Attach a drawing when the two ends differ.',
+  firstName: 'First Name',
+  lastName: 'Last Name',
+  details: 'Size, material, quantity, destination, notes',
+  send: 'Submit RFQ',
+  demoMessage:
+    'Thanks. This form is not connected yet — email sales@ferrulex.com and we reply to RFQs sent through the email form.',
+  catalogHeading: 'Product catalog',
+  catalogContent:
+    '90 stocked-and-quoted lines: compression fittings, ball valves, needle valves, corrugated hose.',
+  catalogLink: 'View products',
+  faqHeading: 'FAQ',
+  faqContent:
+    'Quick answers on materials, threads, MOQ and how RFQ ordering works.',
+  faqLink: 'Visit FAQ',
+  officeHeading: 'OEM & project supply',
+  officeContent: 'FerruleX factory — China (export RFQ)',
+  emailHeading: 'Email us',
+  emailContent: 'Prefer email? Write to',
+};
 ---
 
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
@@ -80,7 +52,12 @@ const copy =
         <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
           {copy.formTitle}
         </h2>
-        <form data-demo-form data-demo-message={copy.demoMessage}>
+        <form
+          action={copy.formEndpoint || '/contact/'}
+          method="POST"
+          data-demo-form={!copy.formEndpoint || undefined}
+          data-demo-message={!copy.formEndpoint ? copy.demoMessage : undefined}
+        >
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <TextInput
@@ -112,7 +89,7 @@ const copy =
               {copy.formSubTitle}
             </p>
             <p
-              class="mt-2 hidden text-sm text-orange-500 dark:text-orange-400"
+              class="mt-2 hidden text-sm text-blue-600 dark:text-blue-400"
               data-demo-status
               aria-live="polite"
             ></p>
@@ -122,11 +99,11 @@ const copy =
 
       <div class="divide-y divide-neutral-300 dark:divide-neutral-700">
         <ContactIconBlock
-          heading={copy.knowledgeHeading}
-          content={copy.knowledgeContent}
+          heading={copy.catalogHeading}
+          content={copy.catalogContent}
           isLinkVisible={true}
-          linkTitle={copy.knowledgeLink}
-          linkURL="#"
+          linkTitle={copy.catalogLink}
+          linkURL="/products/"
           isArrowVisible={true}
         >
           <Icon name="question" />
@@ -137,7 +114,7 @@ const copy =
           content={copy.faqContent}
           isLinkVisible={true}
           linkTitle={copy.faqLink}
-          linkURL="#"
+          linkURL="/faq/"
           isArrowVisible={true}
         >
           <Icon name="chatBubble" />
@@ -146,8 +123,7 @@ const copy =
         <ContactIconBlock
           heading={copy.officeHeading}
           content={copy.officeContent}
-          isAddressVisible={true}
-          addressContent="72 Union Terrace, E10 4PE London"
+          isAddressVisible={false}
         >
           <Icon name="mapPin" />
         </ContactIconBlock>
@@ -156,8 +132,8 @@ const copy =
           heading={copy.emailHeading}
           content={copy.emailContent}
           isLinkVisible={true}
-          linkTitle="support@screwfast.uk"
-          linkURL="mailto:support@screwfast.uk"
+          linkTitle="sales@ferrulex.com"
+          linkURL="mailto:sales@ferrulex.com"
         >
           <Icon name="envelopeOpen" />
         </ContactIconBlock>

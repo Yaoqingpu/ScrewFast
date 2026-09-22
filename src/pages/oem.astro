@@ -1,0 +1,50 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `OEM & Custom Stainless Fittings | ${SITE.title}`;
+const metaDescription =
+  'OEM and custom stainless steel fittings from the FerruleX factory — drawings, mixed threads, private marking and non-standard ends. Request a manufacturing quote.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE.url}/oem/`,
+    url: `${SITE.url}/oem/`,
+    name: pageTitle,
+    description: metaDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', url: SITE.url, name: SITE.title },
+  }}
+>
+  <SupportPage
+    title="OEM and non-catalog parts"
+    lead="If the part is in the catalog, order that SKU. If the drawing changes an end, a thread or a mark, send the file. We check whether we can machine it, then quote quantity and days."
+  >
+    <h2>What we will change</h2>
+    <ul>
+      <li>One end metric compression, the other NPT, G or BSPT</li>
+      <li>Elbows, tees, bulkheads and hose ends that are close to a catalog shape</li>
+      <li>Your mark on the body, when the blank has room</li>
+      <li>A kit of fittings and valves packed as one line for your assembly bench</li>
+    </ul>
+
+    <h2>What to attach</h2>
+    <p>
+      A PDF or STEP file, the grade, the quantity and the destination. If the part is almost a
+      <a href="/products/">catalog item</a>, name that page and list only the differences. That reply is faster than a blank-sheet quote.
+    </p>
+
+    <h2>Quantity and time</h2>
+    <p>
+      Custom MOQ and shop days are on the quotation, not on this page. A stocked sister size can often ship with the first custom lot so the panel is not waiting on one fitting. Factory days versus sea time are explained on
+      <a href="/delivery/">delivery</a>.
+    </p>
+  </SupportPage>
+</MainLayout>

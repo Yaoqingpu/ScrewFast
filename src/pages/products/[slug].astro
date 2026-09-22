@@ -1,0 +1,76 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import ProductDetail from '@components/sections/products/ProductDetail.astro';
+import CategoryListing from '@components/sections/products/CategoryListing.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { SITE } from '@data/constants';
+import { PRODUCT_CATEGORIES, getCategory, productPath } from '@data/categories';
+import { isEnContent } from '@utils/contentLocale';
+
+export async function getStaticPaths() {
+  const productEntries = await getCollection('products', ({ id }) => isEnContent(id));
+  return [
+    ...PRODUCT_CATEGORIES.map(category => ({
+      params: { slug: category.slug },
+      props: { kind: 'category' as const },
+    })),
+    ...productEntries.map(product => ({
+      params: { slug: product.data.slug },
+      props: { kind: 'product' as const, product },
+    })),
+  ];
+}
+
+interface Props {
+  kind: 'category' | 'product';
+  product?: CollectionEntry<'products'>;
+}
+
+const { kind, product } = Astro.props;
+const category = kind === 'category' ? getCategory(Astro.params.slug!) : undefined;
+
+const related =
+  kind === 'product' && product
+    ? (
+        await getCollection('products', ({ id, data }) => {
+          return (
+            isEnContent(id) &&
+            data.category === product.data.category &&
+            data.slug !== product.data.slug
+          );
+        })
+      )
+        .sort((a, b) => a.data.main.id - b.data.main.id)
+        .slice(0, 4)
+    : [];
+---
+
+{
+  kind === 'category' && category && <CategoryListing category={category} />
+}
+
+{
+  kind === 'product' && product && (
+    <MainLayout
+      title={`${product.data.title} | ${SITE.title}`}
+      customDescription={product.data.description}
+      customOgTitle={`${product.data.title} | ${SITE.title}`}
+      structuredData={{
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        '@id': `${SITE.url}${productPath(product.data.category, product.data.slug)}`,
+        url: `${SITE.url}${productPath(product.data.category, product.data.slug)}`,
+        name: product.data.title,
+        description: product.data.description,
+        sku: `FX-${String(product.data.main.id).padStart(3, '0')}`,
+        brand: {
+          '@type': 'Brand',
+          name: SITE.title,
+        },
+        category: getCategory(product.data.category)?.title,
+      }}
+    >
+      <ProductDetail product={product} related={related} />
+    </MainLayout>
+  )
+}

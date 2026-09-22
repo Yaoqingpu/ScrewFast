@@ -1,0 +1,52 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `Catalog & Downloads | ${SITE.title}`;
+const metaDescription =
+  'Download FerruleX stainless steel fittings information and browse the online catalog. Request the full PDF selection guide with your factory RFQ.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE.url}/downloads/`,
+    url: `${SITE.url}/downloads/`,
+    name: pageTitle,
+    description: metaDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', url: SITE.url, name: SITE.title },
+  }}
+>
+  <SupportPage
+    title="Catalog and files"
+    lead="The live catalog is the page set on this site. A PDF selection guide and CAD for a named series are sent with the quote when you ask. We do not host unfinished files as public downloads."
+  >
+    <h2>Browse by product</h2>
+    <ul>
+      <li><a href="/products/">All categories</a></li>
+      <li><a href="/products/compression-fittings/">Compression fittings</a></li>
+      <li><a href="/products/ball-valves/">Ball valves</a></li>
+      <li><a href="/products/needle-valves/">Needle valves</a></li>
+      <li><a href="/products/check-valves/">Check valves and filters</a></li>
+      <li><a href="/products/corrugated-hose/">Corrugated hose</a></li>
+      <li><a href="/2-piece-ball-valve/">2-piece ball valve size chart</a></li>
+    </ul>
+
+    <h2>PDF</h2>
+    <p>
+      The factory selection notes (sizes, series, packing) go out by email with the quotation. Write “PDF catalog” on the
+      <a href="/contact/">RFQ</a>. A public file link will appear here only after that English file is final.
+    </p>
+
+    <h2>Drawings</h2>
+    <p>
+      For a catalog shape we confirm the envelope on the reply. For a special part, send your STEP or PDF. A full CAD pack for every SKU is not online yet — name the series you need first.
+    </p>
+  </SupportPage>
+</MainLayout>

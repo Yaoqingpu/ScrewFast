@@ -1,0 +1,433 @@
+﻿---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
+import { formatDate } from '@utils/utils';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { SITE } from '@data/constants';
+import {
+  BLOG_CATEGORIES,
+  getBlogCategory,
+  blogCategoryPath,
+  blogPostPath,
+  blogHubPath,
+} from '@data/blog_categories';
+import { isEnContent } from '@utils/contentLocale';
+import AuthBtn from '@components/ui/buttons/AuthBtn.astro';
+import TextInput from '@components/ui/forms/input/TextInput.astro';
+import EmailContactInput from '@components/ui/forms/input/EmailContactInput.astro';
+import PhoneInput from '@components/ui/forms/input/PhoneInput.astro';
+import TextAreaInput from '@components/ui/forms/input/TextAreaInput.astro';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog', ({ id, filePath }) =>
+    isEnContent(id, filePath)
+  );
+  return [
+    ...BLOG_CATEGORIES.map(category => ({
+      params: { slug: category.slug },
+      props: { kind: 'category' as const },
+    })),
+    ...blogPosts.map(post => ({
+      params: { slug: post.data.slug },
+      props: { kind: 'post' as const, post },
+    })),
+  ];
+}
+
+interface Props {
+  kind: 'category' | 'post';
+  post?: CollectionEntry<'blog'>;
+}
+
+const { kind, post } = Astro.props;
+const category =
+  kind === 'category'
+    ? getBlogCategory(Astro.params.slug!)
+    : getBlogCategory(post?.data.category ?? '');
+
+const posts =
+  kind === 'category' && category
+    ? (
+        await getCollection('blog', ({ id, data, filePath }) => {
+          return isEnContent(id, filePath) && data.category === category.slug;
+        })
+      ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    : [];
+
+const rendered = kind === 'post' && post ? await render(post) : null;
+const Content = rendered?.Content;
+const path =
+  kind === 'post' && post
+    ? blogPostPath(post.data.category, post.data.slug)
+    : category
+      ? blogCategoryPath(category.slug)
+      : blogHubPath();
+const pageTitle =
+  kind === 'post' && post
+    ? `${post.data.title} | ${SITE.title}`
+    : `${category?.title ?? 'Blog'} | Blog | ${SITE.title}`;
+
+const relatedPosts =
+  kind === 'post' && post
+    ? await (async () => {
+        const all = (
+          await getCollection('blog', ({ id, data, filePath }) => {
+            return isEnContent(id, filePath) && data.slug !== post.data.slug;
+          })
+        ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+        const sameCategory = all.filter(
+          p => p.data.category === post.data.category
+        );
+        const others = all.filter(p => p.data.category !== post.data.category);
+        return [...sameCategory, ...others].slice(0, 3);
+      })()
+    : [];
+---
+
+{kind === 'category' && category && (
+  <MainLayout
+    title={pageTitle}
+    customDescription={category.description}
+    customOgTitle={pageTitle}
+    structuredData={{
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${SITE.url}${path}`,
+      url: `${SITE.url}${path}`,
+      name: pageTitle,
+      description: category.description,
+      inLanguage: 'en-US',
+    }}
+  >
+    <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+      <nav class="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
+        <a
+          href={blogHubPath()}
+          class="hover:text-blue-700 dark:hover:text-blue-400"
+        >
+          Blog
+        </a>
+        <span class="mx-2">/</span>
+        <span class="text-neutral-800 dark:text-neutral-200">
+          {category.shortTitle}
+        </span>
+      </nav>
+      <h1 class="text-2xl font-bold tracking-tight text-neutral-800 md:text-4xl dark:text-neutral-200">
+        {category.title}
+      </h1>
+      <p class="mt-3 max-w-3xl text-pretty text-neutral-600 dark:text-neutral-400">
+        {category.description}
+      </p>
+      <section class="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {posts.map(item => (
+          <a
+            href={blogPostPath(item.data.category, item.data.slug)}
+            class="group flex h-full flex-col overflow-hidden rounded-xl bg-white ring-1 ring-neutral-200 transition hover:ring-blue-300 dark:bg-neutral-900 dark:ring-neutral-700"
+          >
+            <div class="relative aspect-[16/10] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+              <Image
+                src={item.data.cardImage}
+                alt={item.data.cardImageAlt}
+                class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                format="avif"
+              />
+            </div>
+            <div class="flex flex-1 flex-col gap-2 p-4">
+              <h2 class="text-lg font-semibold text-neutral-800 group-hover:text-blue-700 dark:text-neutral-100">
+                {item.data.title}
+              </h2>
+              <p class="line-clamp-2 text-sm text-neutral-600 dark:text-neutral-400">
+                {item.data.description}
+              </p>
+              <span class="mt-auto pt-2 text-sm font-medium text-blue-700 dark:text-blue-400">
+                Read article →{' '}
+              </span>
+            </div>
+          </a>
+        ))}
+      </section>
+      <div class="mt-12">
+        <a
+          href={blogHubPath()}
+          class="text-sm font-medium text-blue-700 hover:underline dark:text-blue-400"
+        >
+          ← All blog categories
+        </a>
+      </div>
+    </div>
+  </MainLayout>
+)}
+
+{kind === 'post' && post && Content && (
+  <MainLayout
+    title={pageTitle}
+    customDescription={post.data.description}
+    customOgTitle={pageTitle}
+    structuredData={{
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.data.title,
+      image: post.data.cardImage.src,
+      datePublished: post.data.pubDate.toISOString(),
+      author: { '@type': 'Organization', name: SITE.title },
+      publisher: {
+        '@type': 'Organization',
+        name: SITE.title,
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${SITE.url}${path}`,
+      },
+    }}
+  >
+    <div class="mx-auto max-w-[85rem] px-4 pt-6 pb-16 sm:px-6 lg:px-8 lg:pt-10">
+      <nav class="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
+        <a
+          href={blogHubPath()}
+          class="hover:text-blue-700 dark:hover:text-blue-400"
+        >
+          Blog
+        </a>
+        {category && (
+          <>
+            <span class="mx-2">/</span>
+            <a
+              href={blogCategoryPath(category.slug)}
+              class="hover:text-blue-700 dark:hover:text-blue-400"
+            >
+              {category.shortTitle}
+            </a>
+          </>
+        )}
+        <span class="mx-2">/</span>
+        <span class="line-clamp-1 text-neutral-800 dark:text-neutral-200">
+          {post.data.title}
+        </span>
+      </nav>
+
+      <header class="max-w-3xl">
+        <h1 class="text-3xl font-bold tracking-tight text-neutral-800 md:text-4xl dark:text-neutral-100">
+          {post.data.title}
+        </h1>
+        <p class="mt-3 text-neutral-600 dark:text-neutral-400">
+          {post.data.description}
+        </p>
+        <p class="mt-2 text-sm text-neutral-500">
+          {formatDate(post.data.pubDate)} · {post.data.readTime} min read ·{' '}
+          {post.data.author}
+        </p>
+      </header>
+
+      <div class="relative mt-8 aspect-[16/9] max-w-4xl overflow-hidden rounded-xl">
+        <Image
+          src={post.data.cardImage}
+          alt={post.data.cardImageAlt}
+          class="h-full w-full object-cover"
+          format="avif"
+        />
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[200px_minmax(0,1fr)_260px] lg:gap-10 xl:grid-cols-[220px_minmax(0,1fr)_280px] xl:gap-12">
+        <aside class="hidden lg:block">
+          <nav
+            id="toc"
+            class="sticky top-24 rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-900"
+            aria-label="Table of contents"
+          >
+            <p class="mb-3 text-xs font-semibold tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
+              On this page
+            </p>
+            <ul class="space-y-2 text-sm text-neutral-600 dark:text-neutral-300"></ul>
+          </nav>
+        </aside>
+
+        <article id="blog-article" class="min-w-0">
+          <div class="prose prose-neutral max-w-none dark:prose-invert prose-headings:scroll-mt-28">
+            <Content />
+          </div>
+        </article>
+
+        <aside class="lg:block">
+          <div class="sticky top-24 rounded-xl border border-neutral-200 bg-neutral-50 p-5 dark:border-neutral-700 dark:bg-neutral-900/80">
+            <h2 class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">
+              Request a Quote
+            </h2>
+            <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+              Size, grade (SS304 / SS316), quantity — reply in 1–2 business
+              days.
+            </p>
+            <form
+              class="mt-4"
+              action={import.meta.env.PUBLIC_FORM_ENDPOINT || '/contact/'}
+              method="POST"
+              data-demo-form={
+                !import.meta.env.PUBLIC_FORM_ENDPOINT || undefined
+              }
+              data-demo-message={
+                !import.meta.env.PUBLIC_FORM_ENDPOINT
+                  ? 'Thanks. This form is not connected to the inbox yet. Email the same details to sales@ferrulex.com for a reply now.'
+                  : undefined
+              }
+            >
+              <div class="grid gap-3">
+                <TextInput
+                  id="blog-rfq-firstname"
+                  label="First Name"
+                  name="hs-firstname-contacts"
+                />
+                <TextInput
+                  id="blog-rfq-lastname"
+                  label="Last Name"
+                  name="hs-lastname-contacts"
+                />
+                <EmailContactInput id="blog-rfq-email" />
+                <PhoneInput id="blog-rfq-phone" />
+                <TextAreaInput
+                  id="blog-rfq-details"
+                  label="Size, material, quantity, notes"
+                  name="hs-about-contacts"
+                />
+              </div>
+              <div class="mt-4">
+                <AuthBtn title="Submit RFQ" />
+              </div>
+              <p
+                class="mt-2 hidden text-sm text-blue-600 dark:text-blue-400"
+                data-demo-status
+                aria-live="polite"
+              ></p>
+            </form>
+          </div>
+        </aside>
+      </div>
+
+      {relatedPosts.length > 0 && (
+        <section class="mt-16 border-t border-neutral-200 pt-12 dark:border-neutral-700">
+          <h2 class="text-2xl font-bold tracking-tight text-neutral-800 dark:text-neutral-100">
+            Related articles
+          </h2>
+          <p class="mt-1 text-neutral-600 dark:text-neutral-400">
+            More guides for stainless steel fittings buyers.
+          </p>
+          <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {relatedPosts.map(item => (
+              <a
+                href={blogPostPath(item.data.category, item.data.slug)}
+                class="group flex h-full flex-col overflow-hidden rounded-xl bg-white ring-1 ring-neutral-200 transition hover:ring-blue-300 dark:bg-neutral-900 dark:ring-neutral-700"
+              >
+                <div class="relative aspect-[16/10] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+                  <Image
+                    src={item.data.cardImage}
+                    alt={item.data.cardImageAlt}
+                    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    format="avif"
+                  />
+                </div>
+                <div class="flex flex-1 flex-col gap-2 p-4">
+                  <h3 class="text-lg font-semibold text-neutral-800 group-hover:text-blue-700 dark:text-neutral-100">
+                    {item.data.title}
+                  </h3>
+                  <p class="line-clamp-2 text-sm text-neutral-600 dark:text-neutral-400">
+                    {item.data.description}
+                  </p>
+                  <span class="mt-auto pt-2 text-sm font-medium text-blue-700 dark:text-blue-400">
+                    Read article →{' '}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+
+    <style>
+      #toc a {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.15s ease;
+      }
+      #toc a:hover {
+        color: #ca8a04;
+      }
+      #toc li.selected a {
+        color: #ca8a04;
+        font-weight: 600;
+      }
+      #toc .toc-level-h3,
+      #toc .toc-level-h4 {
+        padding-left: 0.75rem;
+      }
+    </style>
+
+    <script>
+      function slugify(text: string): string {
+        return text
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-');
+      }
+
+      function setActiveLinkById(id: string | null) {
+        document.querySelectorAll('#toc li').forEach(item => {
+          item.classList.remove('selected');
+        });
+        if (!id) return;
+        const activeLink = document.querySelector(
+          `#toc a[href="#${CSS.escape(id)}"]`
+        );
+        activeLink?.parentElement?.classList.add('selected');
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const article = document.getElementById('blog-article');
+        const tocList = document.querySelector('#toc ul');
+        if (!article || !tocList) return;
+
+        const headings = article.querySelectorAll('h2, h3, h4');
+        const ids: string[] = [];
+
+        headings.forEach(heading => {
+          if (!(heading instanceof HTMLElement)) return;
+          if (!heading.id) {
+            heading.id = slugify(heading.textContent || 'section');
+          }
+          ids.push(heading.id);
+
+          const listItem = document.createElement('li');
+          listItem.className = `toc-level-${heading.tagName.toLowerCase()}`;
+          const link = document.createElement('a');
+          link.href = `#${heading.id}`;
+          link.textContent = heading.textContent;
+          listItem.appendChild(link);
+          tocList.appendChild(listItem);
+        });
+
+        if (ids.length === 0) {
+          const tocNav = document.getElementById('toc');
+          tocNav?.classList.add('hidden');
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          entries => {
+            const visible = entries
+              .filter(e => e.isIntersecting)
+              .sort(
+                (a, b) => a.boundingClientRect.top - b.boundingClientRect.top
+              );
+            if (visible[0]?.target instanceof HTMLElement) {
+              setActiveLinkById(visible[0].target.id);
+            }
+          },
+          { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+        );
+
+        headings.forEach(h => observer.observe(h));
+      });
+    </script>
+  </MainLayout>
+)}

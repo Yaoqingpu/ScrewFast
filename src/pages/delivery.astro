@@ -1,0 +1,53 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `Delivery & Lead Times | ${SITE.title}`;
+const metaDescription =
+  'FerruleX factory delivery for stainless steel fittings: stocked sizes ship fast after order confirmation. Custom machining lead times quoted on every RFQ.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE.url}/delivery/`,
+    url: `${SITE.url}/delivery/`,
+    name: pageTitle,
+    description: metaDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', url: SITE.url, name: SITE.title },
+  }}
+>
+  <SupportPage
+    title="Delivery, payment and packing"
+    lead="Two clocks matter: days in our plant, then days on the ship. Stocked fittings are about 5–7 days after you confirm. Make-to-order is about 15–25 days of production, then transit. The quote states both."
+  >
+    <h2>When it leaves the factory</h2>
+    <p>
+      Stocked catalog sizes are typically ready in <strong>5–7 days</strong> after you confirm the quotation. Bulk and make-to-order lots take about <strong>15–25 days</strong> to produce. Sea or air time is extra and depends on the port you name. We do not promise a door date until the Incoterm and destination are on the RFQ.
+    </p>
+
+    <h2>How you pay</h2>
+    <p>
+      The usual term is T/T: about 30% with the order, the balance before shipment. L/C at sight is available on larger orders. A quotation is generally good for 30 days. If alloy or freight moves, we re-quote before you pay the deposit.
+    </p>
+
+    <h2>How it is packed</h2>
+    <ul>
+      <li>Each part in a bag, then an inner carton, then an export carton</li>
+      <li>A wooden case when the lot is heavy or the size is large</li>
+      <li>Packing list and commercial invoice in the shipment</li>
+    </ul>
+
+    <h2>Where it ships from</h2>
+    <p>
+      The default offer is FOB Shanghai or FOB Ningbo. CIF, EXW or another term is fine if you write the destination. Size charts and ordering notes for the threaded ball valve series are on the
+      <a href="/2-piece-ball-valve/">2-piece ball valve page</a>.
+    </p>
+  </SupportPage>
+</MainLayout>

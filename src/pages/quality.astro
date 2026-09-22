@@ -1,0 +1,60 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `Quality & Material Certificates | ${SITE.title}`;
+const metaDescription =
+  'FerruleX quality for stainless steel fittings: SS304 / SS316 / SS316L, dimensional checks, and material documentation available on RFQ for export shipments.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `${SITE.url}/quality/`,
+    url: `${SITE.url}/quality/`,
+    name: pageTitle,
+    description: metaDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', url: SITE.url, name: SITE.title },
+  }}
+>
+  <SupportPage
+    title="Quality and paperwork"
+    lead="Tell us the grade on every line. SS304, SS316 and SS316L are not interchangeable, and we will not swap them to save a day. Certificates are prepared when you ask on the RFQ, before the cartons are closed."
+  >
+    <h2>Grades we actually run</h2>
+    <p>
+      Catalog parts are SS304, SS316 or SS316L. Mixed bills are normal: 304 on utility air, 316 or 316L on wetted or marine lines. Write the grade on each line so the packing list matches the drawing. If you are still choosing, read
+      <a href="/blog/ss304-vs-ss316-stainless-steel-fittings/">SS304 vs SS316</a>.
+    </p>
+
+    <h2>2-piece ball valves</h2>
+    <p>
+      The selection sheet for 2-piece full-port ball valves uses 304 or 316L bodies (CF8 / CF8M), PTFE seats, female BSP, NPT, BSPT or G threads, and a PN16 working frame. Size chart and guide MOQ:
+      <a href="/2-piece-ball-valve/">2-piece ball valve series</a>. Confirm the series on the RFQ before you treat PN16 as the order rating.
+    </p>
+
+    <h2>Checks before the carton closes</h2>
+    <ul>
+      <li>Thread or tube end against the size you ordered</li>
+      <li>Marking and visual finish on catalog parts</li>
+      <li>Seat, handle and flow direction where the series has them</li>
+    </ul>
+
+    <h2>Papers you can ask for</h2>
+    <p>
+      Material notes, packing photos and third-party inspection are arranged at quote stage. Asking after the goods are packed is often too late for the lot you already paid to produce. Say what your customer or the broker needs, and we list it on the quotation.
+    </p>
+
+    <h2>Repeat OEM lots</h2>
+    <p>
+      Repeat orders can keep the same grade and the same marking. If your end customer wants a heat or lot reference on the packing list, say so on the first RFQ. Non-catalog shapes are handled on the
+      <a href="/oem/">OEM page</a>.
+    </p>
+  </SupportPage>
+</MainLayout>

@@ -1,29 +1,37 @@
 {
-  "subTitle": "Ask us anything about our brand and products, and get factual responses.",
+  "subTitle": "Factory supply, materials, threads, fast delivery and how RFQ ordering works.",
   "faqs": [
     {
-      "question": "What types of tools are included in the Starter Kit?",
-      "answer": "The Starter Kit features essential hand and power tools for diverse DIY projects, including hammers, drills, screwdrivers, and a variety of fasteners. It's a curated selection to help beginners and experienced DIYers alike tackle most home improvement tasks."
+      "question": "Are you a trading company or a factory?",
+      "answer": "FerruleX is a manufacturing factory for stainless steel fittings and valves. We machine, stock and ship from our plant — not a pure trading desk — so lead times on common sizes are short and OEM custom work is reviewed in-house."
     },
     {
-      "question": "Can I upgrade from the Starter Kit to the Professional Toolbox?",
-      "answer": "Absolutely! You can upgrade to the Professional Toolbox at any time to access a wider range of high-quality tools, enjoy priority customer support, and receive exclusive content. Contact our support team for a seamless transition."
+      "question": "How fast can you deliver?",
+      "answer": "Stocked sizes are typically ready 5–7 days after you confirm the quote. Make-to-order is about 15–25 days in production, then transit. Name the port if you want CIF. FOB Shanghai or Ningbo is the default."
     },
     {
-      "question": "What discounts are available for bulk orders through the Professional Toolbox plan?",
-      "answer": "Professional Toolbox members are entitled to exclusive discounts on bulk orders, the percentage of which may vary depending on the order volume. Get in touch with us to discuss your needs, and we'll provide a tailored discount structure."
+      "question": "What stainless steel fittings do you supply?",
+      "answer": "We manufacture stainless steel compression fittings (double-ferrule), ball valves, needle valves, check valves, corrugated stainless steel hose, quick-screw tube fittings, and related tubing accessories. Materials include SS304, SS316 and SS316L."
     },
     {
-      "question": "What kind of customer support can I expect?",
-      "answer": "All our customers receive dedicated email support. With the Starter Kit, you'll receive our standard support, while the Professional Toolbox plan upgrades you to priority support, meaning faster response times and specialized assistance."
+      "question": "Do you sell online with a shopping cart?",
+      "answer": "No. This is an RFQ catalog site. Browse products, then send size, material, thread and quantity via the contact form. We reply with a factory quotation — all orders are negotiated."
     },
     {
-      "question": "How current are the online resources and tutorials?",
-      "answer": "We regularly update our online resources and tutorials to reflect the latest trends in DIY and construction, as well as introductions to new tools and techniques. Our material aims to be comprehensive and user-friendly for all skill levels."
+      "question": "Which thread standards are available?",
+      "answer": "Common options include NPT, G (BSPP), ZG/R (BSPT) and metric threads (e.g. M5–M24). Metric and imperial tube ODs are both available on compression series."
     },
     {
-      "question": "Does ScrewFast offer services for large-scale construction projects?",
-      "answer": "Yes, our Enterprise Solutions are designed for larger companies requiring comprehensive services. We provide consultation, planning, and supply of high-grade tools and materials, as well as staffing solutions for substantial construction needs. Contact us for a customized quote."
+      "question": "What should I include in an RFQ?",
+      "answer": "Send product type or SKU, tube OD / pipe size, thread standard, material (SS304 / SS316), quantity, destination country and any drawing or pressure requirement. That lets our factory quote faster."
+    },
+    {
+      "question": "Can you do OEM or custom parts?",
+      "answer": "Yes. Send a drawing for non-standard ends, mixed threads or private marking. We review manufacturability in-house and quote MOQ and lead time on the RFQ — see the OEM page."
+    },
+    {
+      "question": "Do you provide material certificates?",
+      "answer": "Material documentation can be prepared when requested at RFQ stage. Tell us if you need MTR-style notes or third-party inspection support before we pack the order."
     }
   ]
 }

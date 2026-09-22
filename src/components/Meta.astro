@@ -31,11 +31,9 @@ const ogTitle = customOgTitle || OG.title;
 const ogDescription = customDescription || OG.description;
 
 // Define the metadata for your website and individual pages
-const siteURL = `${Astro.site}`; // Set the website URL in astro.config.mjs
 const author = SITE.author;
 const canonical = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
   .href;
-const basePath = Astro.url.pathname;
 const socialImageRes = await getImage({
   src: OG.image,
   width: 1200,
@@ -43,23 +41,6 @@ const socialImageRes = await getImage({
 });
 const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
 
-const languages: { [key: string]: string } = {
-  en: '',
-  fr: 'fr',
-};
-
-function createHref(_lang: string, prefix: string, path: string): string {
-  // Remove any existing language prefix
-  const cleanPath = path.replace(/^\/(fr|en)\//, '/');
-
-  // Add the correct language prefix if needed
-  const basePath = prefix ? `/${prefix}${cleanPath}` : cleanPath;
-  const normalizedBasePath = basePath.replace(/\/\/+/g, '/');
-
-  return `${siteURL.slice(0, -1)}${normalizedBasePath}`;
-}
-
-const fullPath: string = Astro.url.pathname;
 
 // Generate and optimize the favicon images
 const faviconSvg = await getImage({
@@ -83,6 +64,20 @@ const appleTouchIcon = await getImage({
     set:html={JSON.stringify(structuredData)}
   ></script>
 )}
+{/* Sitewide organization identity, independent of per-page structured data.
+    Uses SITE.url so the real domain propagates here automatically. */}
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${SITE.url}#org`,
+    name: SITE.title,
+    url: SITE.url,
+    logo: Astro.url.origin + appleTouchIcon.src,
+    description: SITE.description_short,
+  })}
+></script>
 {/* Define the character set, description, author, and viewport settings */}
 <meta charset="utf-8" />
 <meta content={description} name="description" />
@@ -90,16 +85,12 @@ const appleTouchIcon = await getImage({
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="canonical" href={canonical} />
-{Object.entries(languages).map(([lang, prefix]) => {
-  const cleanPath = fullPath.replace(/^\/(fr|en)\//, '/');
-  const href = createHref(lang, prefix, cleanPath);
-  return <link rel="alternate" hreflang={lang} href={href} />;
-})}
+<link rel="alternate" hreflang="en" href={canonical} />
 
 {/* Facebook Meta Tags */}
 <meta
   property="og:locale"
-  content={basePath.startsWith('/fr') ? 'fr_FR' : 'en_US'}
+  content='en_US'
 />
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content="website" />
@@ -115,7 +106,7 @@ const appleTouchIcon = await getImage({
 <meta name="twitter:card" content="summary_large_image" />
 <meta
   property="twitter:domain"
-  content={Astro.site?.hostname ?? 'screwfast.uk'}
+  content={Astro.site?.hostname ?? SITE.url.replace(/^https?:\/\//, '')}
 />
 <meta property="twitter:url" content={canonical} />
 <meta name="twitter:title" content={ogTitle} />

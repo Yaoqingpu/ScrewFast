@@ -1,0 +1,59 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `About FerruleX Factory | ${SITE.title}`;
+const metaDescription =
+  'FerruleX is a China stainless steel fittings factory for export OEM buyers: compression fittings, ball valves, needle valves and hose. Stocked sizes ship fast.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${SITE.url}/about/`,
+    url: `${SITE.url}/about/`,
+    name: pageTitle,
+    description: metaDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', url: SITE.url, name: SITE.title },
+  }}
+>
+  <SupportPage
+    title="About the factory"
+    lead="FerruleX makes stainless fittings and valves for export buyers. You browse the catalog, send a size list, and get a factory quote. Stocked sizes move in days. Custom parts get a written lead time."
+  >
+    <h2>What leaves the plant</h2>
+    <p>
+      The catalog is the work we actually run: <a href="/products/compression-fittings/">double-ferrule compression fittings</a>,
+      <a href="/products/ball-valves/">ball valves</a>,
+      <a href="/products/needle-valves/">needle valves</a>,
+      <a href="/products/check-valves/">check valves</a>,
+      <a href="/products/corrugated-hose/">corrugated hose</a>,
+      quick-screw and push-to-connect fittings, cast fittings, and tube accessories. Standard grades are SS304, SS316 and SS316L. If a line is not in the catalog, do not assume we make it — ask on the RFQ.
+    </p>
+
+    <h2>Why buyers come here</h2>
+    <p>
+      Quotes, size checks and packing are handled at the factory. Common metric and inch sizes stay in stock so a confirmed order does not wait for a remake. Drawings for non-standard ends are reviewed here, not forwarded to an unknown shop.
+    </p>
+
+    <h2>Who we supply</h2>
+    <ul>
+      <li>OEM builders who need fittings and valves for one panel or skid</li>
+      <li>Contractors mixing tube ends and pipe threads on the same job</li>
+      <li>Distributors who want factory pricing and a date they can tell their customer</li>
+    </ul>
+
+    <h2>How an order starts</h2>
+    <p>
+      There is no cart. Send tube OD or thread size, material and quantity through
+      <a href="/contact/">Contact</a>. We reply with price and timing. Payment is usually T/T with about 30% down, or L/C at sight. Read
+      <a href="/delivery/">delivery</a>, <a href="/quality/">quality</a> and <a href="/oem/">OEM</a> before you send a large BOM.
+    </p>
+  </SupportPage>
+</MainLayout>

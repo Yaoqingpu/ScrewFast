@@ -40,6 +40,21 @@ interface Props {
     />
     {/* Define the title of the page */}
     <title>{title}</title>
+    {/* Preload self-hosted Inter variable fonts */}
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-wght-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <script is:inline>
       // Script to handle dark mode. It will check if the theme is stored in localStorage or if dark theme is preferred by system settings
       if (
@@ -57,10 +72,10 @@ interface Props {
       import '@scripts/demoForms.js';
     </script>
   </head>
-  <body class="flex min-h-screen flex-col bg-neutral-200 selection:bg-yellow-400 selection:text-neutral-700 dark:bg-neutral-800">
+  <body class="flex min-h-screen flex-col bg-neutral-50 selection:bg-blue-600 selection:text-white dark:bg-neutral-950">
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-lg focus:bg-yellow-400 focus:px-4 focus:py-2 focus:text-neutral-800"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-100 focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
     >
       Skip to content
     </a>

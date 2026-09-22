@@ -1,0 +1,121 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
+import ProductCard from '@components/ui/cards/ProductCard.astro';
+import { getCollection } from 'astro:content';
+import { SITE } from '@data/constants';
+import { categoryPath, type CategoryDef } from '@data/categories';
+import { isEnContent } from '@utils/contentLocale';
+
+interface Props {
+  category: CategoryDef;
+}
+
+const { category } = Astro.props;
+
+const products = (
+  await getCollection('products', ({ id, data }) => {
+    return isEnContent(id) && data.category === category.slug;
+  })
+).sort((a, b) => a.data.main.id - b.data.main.id);
+
+const pageTitle = `${category.h1} | ${SITE.title}`;
+const metaDescription = category.description;
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE.url}${categoryPath(category.slug)}`,
+    url: `${SITE.url}${categoryPath(category.slug)}`,
+    name: pageTitle,
+    description: metaDescription,
+    isPartOf: {
+      '@type': 'WebSite',
+      url: SITE.url,
+      name: SITE.title,
+      description: SITE.description_short,
+    },
+    inLanguage: 'en-US',
+  }}
+>
+  <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <nav class="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
+      <a href="/products/" class="hover:text-blue-700 dark:hover:text-blue-400">
+        Products
+      </a>
+      <span class="mx-2">/</span>
+      <span class="text-neutral-800 dark:text-neutral-200">
+        {category.shortTitle}
+      </span>
+    </nav>
+
+    <div class="relative mb-10 overflow-hidden rounded-3xl bg-linear-to-b from-blue-50 to-neutral-50 px-6 py-10 ring-1 ring-blue-100/70 sm:px-10 lg:py-12 dark:from-blue-950/30 dark:to-neutral-950 dark:ring-blue-400/10">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+        <div class="max-w-3xl">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <h1 class="text-2xl font-bold tracking-tight text-neutral-800 md:text-4xl dark:text-neutral-200">
+              {category.h1}
+            </h1>
+            <span class="inline-flex items-center rounded-full border border-blue-200/80 bg-white/80 px-2.5 py-1 text-xs font-semibold text-blue-700 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-300">
+              {products.length} products
+            </span>
+          </div>
+          <p class="mt-3 text-pretty text-neutral-600 dark:text-neutral-400">
+            {category.description}
+          </p>
+          {category.intro && (
+            <p class="mt-4 max-w-2xl rounded-xl border border-blue-200/70 bg-white/70 px-4 py-3 text-sm text-pretty text-neutral-700 dark:border-blue-400/15 dark:bg-white/[.04] dark:text-neutral-300">
+              <span class="font-semibold text-neutral-800 dark:text-neutral-200">
+                How to order:{' '}
+              </span>
+              {category.intro}
+            </p>
+          )}
+          <p class="mt-3 text-sm text-neutral-500 dark:text-neutral-400">
+            Open a card for material, ends and ordering. Price is on the quote.
+          </p>
+          {category.slug === 'ball-valves' && (
+            <p class="mt-3 text-sm">
+              <a
+                href="/2-piece-ball-valve/"
+                class="font-medium text-blue-700 hover:underline dark:text-blue-400"
+              >
+                2-piece full-port ball valve — size chart, materials &amp;
+                ordering →
+              </a>
+            </p>
+          )}
+        </div>
+        <div class="shrink-0 lg:pt-2">
+          <PrimaryCTA title="Request a Quote" url="/contact/" noArrow={true} />
+        </div>
+      </div>
+    </div>
+
+    {products.length === 0 ? (
+      <p class="text-neutral-600 dark:text-neutral-400">
+        No products in this category yet.
+      </p>
+    ) : (
+      <section class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {products.map(product => (
+          <ProductCard product={product} />
+        ))}
+      </section>
+    )}
+
+    <div class="mt-12 border-t border-neutral-200 pt-8 dark:border-neutral-700">
+      <a
+        href="/products/"
+        class="text-sm font-medium text-blue-700 hover:underline dark:text-blue-400"
+      >
+        ← All categories
+      </a>
+    </div>
+  </div>
+</MainLayout>

@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  count: number;
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const {
+  href,
+  title,
+  description,
+  count,
+  image,
+  imageAlt = title,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  data-astro-prefetch
+  class="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-sm shadow-neutral-900/5 ring-1 ring-neutral-200 transition hover:shadow-md hover:ring-blue-300 hover:shadow-blue-600/5 dark:bg-neutral-900 dark:ring-neutral-700 dark:hover:ring-blue-400/40"
+>
+  <div class="relative aspect-[4/3] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+    {image ? (
+      <Image
+        src={image}
+        alt={imageAlt}
+        draggable={'false'}
+        class="absolute inset-0 h-full w-full object-cover object-center transition duration-500 ease-out group-hover:scale-105"
+        format="avif"
+        widths={[320, 480, 640]}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+      />
+    ) : (
+      <div class="absolute inset-0 flex items-center justify-center text-sm text-neutral-400">
+        FerruleX
+      </div>
+    )}
+    <div class="pointer-events-none absolute inset-0 bg-linear-to-t from-neutral-900/50 via-transparent to-transparent" />
+    <span class="absolute right-3 bottom-3 rounded-md bg-neutral-900/80 px-2 py-0.5 text-xs font-medium text-white">
+      {count} products
+    </span>
+  </div>
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <h2 class="text-lg font-semibold text-neutral-800 group-hover:text-blue-700 dark:text-neutral-100 dark:group-hover:text-blue-400">
+      {title}
+    </h2>
+    <p class="line-clamp-3 text-sm text-pretty text-neutral-600 dark:text-neutral-400">
+      {description}
+    </p>
+    <span class="mt-auto pt-2 text-sm font-medium text-blue-700 dark:text-blue-400">
+      Browse category →
+    </span>
+  </div>
+</a>

@@ -1,0 +1,41 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `Privacy Policy | ${SITE.title}`;
+const metaDescription =
+  'Privacy policy for FerruleX website inquiries and RFQ forms. How we use contact details submitted by export buyers.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+>
+  <SupportPage
+    title="Privacy policy"
+    lead="This page explains how FerruleX handles information you send through the website contact / RFQ form."
+    ctaTitle="Contact us"
+  >
+    <h2>What we collect</h2>
+    <p>
+      When you request a quote we receive the details you type — typically name, company, email, phone and the technical fields of your RFQ (sizes, materials, quantity, destination).
+    </p>
+
+    <h2>How we use it</h2>
+    <p>
+      We use inquiry data only to reply with quotations, clarify specifications and fulfill orders. We do not sell your contact list.
+    </p>
+
+    <h2>Retention</h2>
+    <p>
+      RFQ correspondence is kept as long as needed for quoting, order history and legal record-keeping, then deleted or archived under our internal schedule.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions about this policy: use the <a href="/contact/">contact form</a> with subject “Privacy”.
+    </p>
+  </SupportPage>
+</MainLayout>

@@ -1,0 +1,54 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import { SITE } from '@data/constants';
+
+const pageTitle = `Industry Applications | ${SITE.title}`;
+const metaDescription =
+  'Where FerruleX stainless steel fittings are used: instrumentation panels, petrochemical skids, food & hygienic lines, marine utilities and OEM equipment.';
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE.url}/applications/`,
+    url: `${SITE.url}/applications/`,
+    name: pageTitle,
+    description: metaDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@type': 'WebSite', url: SITE.url, name: SITE.title },
+  }}
+>
+  <SupportPage
+    title="Where the parts are used"
+    lead="Same catalog, different duty. Name the media and the environment on the RFQ so we do not quote a utility fitting into a chloride line."
+  >
+    <h2>Analyzer and instrument panels</h2>
+    <p>
+      Sample and purge lines use <a href="/products/compression-fittings/">double-ferrule fittings</a>,
+      <a href="/products/needle-valves/">needle valves</a> and BA or coil tube. Write tube OD, grade and thread. A missing OD is the usual reason a quote stalls.
+    </p>
+
+    <h2>Process skids</h2>
+    <p>
+      Shutoff is a <a href="/products/ball-valves/">ball valve</a>. One-way flow is a
+      <a href="/products/check-valves/">check valve</a>. Movement between skids is
+      <a href="/products/corrugated-hose/">corrugated hose</a>. Put the design pressure on the RFQ. We will not invent a class to fill the form.
+    </p>
+
+    <h2>Food and clean utilities</h2>
+    <p>
+      Say “hygienic” or “chloride wash” if that is the duty. Tri-clamp hose ends and SS316 are the usual ask. We will not substitute a general cast fitting unless you accept it in writing.
+    </p>
+
+    <h2>Marine and packaged equipment</h2>
+    <p>
+      Salt air usually means SS316. Imported skids often mix NPT and G on the same manifold. If the drawing leaves the catalog, use
+      <a href="/oem/">OEM</a> and attach the file.
+    </p>
+  </SupportPage>
+</MainLayout>

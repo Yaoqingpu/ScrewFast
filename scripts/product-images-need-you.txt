@@ -1,0 +1,5 @@
+Put JPG files into: E:\AI\ss-fittings-export\src\images\products\
+Use the exact filename below. Prefer white-background product shots from the Shengquan catalog.
+
+ID	English title	Filename to replace	Reason
+029	Quick-Screw Female Connector	p06-29-quick-screw-female-connector.jpg	no catalog image after '内丝快拧接头'

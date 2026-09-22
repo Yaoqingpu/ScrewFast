@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { productPath } from '@data/categories';
+
+interface Props {
+  product: CollectionEntry<'products'>;
+}
+
+const { product } = Astro.props;
+const href = productPath(product.data.category, product.data.slug);
+---
+
+<a
+  href={href}
+  data-astro-prefetch
+  class="group flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-sm shadow-neutral-900/5 ring-1 ring-neutral-200 transition hover:shadow-md hover:ring-blue-300 hover:shadow-blue-600/5 dark:bg-neutral-900 dark:ring-neutral-700 dark:hover:ring-blue-400/40"
+>
+  <div class="relative aspect-[4/3] w-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+    <Image
+      src={product.data.main.imgCard}
+      alt={product.data.main.imgAlt}
+      draggable={'false'}
+      class="absolute inset-0 h-full w-full object-cover object-center transition duration-500 ease-out group-hover:scale-105"
+      format="avif"
+      widths={[320, 480, 640]}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+    />
+  </div>
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <h3 class="line-clamp-2 text-base font-semibold text-neutral-800 group-hover:text-blue-700 dark:text-neutral-100 dark:group-hover:text-blue-400">
+      {product.data.title}
+    </h3>
+    <p class="line-clamp-2 text-sm text-pretty text-neutral-600 dark:text-neutral-400">
+      {product.data.description}
+    </p>
+    <span class="mt-auto pt-2 text-sm font-medium text-blue-700 dark:text-blue-400">
+      View details →
+    </span>
+  </div>
+</a>

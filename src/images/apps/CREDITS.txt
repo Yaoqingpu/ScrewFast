@@ -1,0 +1,17 @@
+﻿# Scene photos only. SKU shots are not in this folder.
+# Kept only if the picture is stainless fittings, valves, tube, or process piping.
+
+hero-plant.jpg   Not used on the site. It is a nuclear-plant instrument room. Do not put it back on the homepage.
+app-lab.jpg      Braided hose. Not used. Do not use it as a product image.
+Homepage hose tab uses the catalog photo p02-01 (threaded corrugated hose), not the pipe-bundle file.
+
+features-piping.jpg  Wikimedia, Stainless_Steel_Pipe.jpg. Bottom cropped to remove a phone watermark.
+app-pipes.jpg        Wikimedia, Ball_Valve.jpg. Stainless 3-piece ball valve cutaway. Also used as services-quote.jpg.
+app-refinery.jpg     Wikimedia, 304 stainless steel pipe bundles. Also copied to app-factory.jpg (the braided-hose download was rejected).
+app-food.jpg         Existing food-plant stainless piping. Also copied to app-instrument.jpg (handrail download was rejected).
+app-marine.jpg       Existing 304 mini ball valves, marked 1/4 and 1/2.
+app-panel.jpg        Wikimedia, Whitworth and metric thread pitch gauge. Also copied to services-oem.jpg.
+app-lab.jpg          Still a braided-hose photo. Not used on the homepage. Do not use it as a product image.
+
+Rejected this pass: handrail, braided hose, plastic corrugated conduit, Swagelok-branded files.
+Do not publish a braided-hose product. It is not in the factory catalog.

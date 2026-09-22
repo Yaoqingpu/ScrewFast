@@ -21,9 +21,9 @@ interface Props {
 const { title, subTitle, src, alt, features } = Astro.props;
 ---
 
-<section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 2xl:max-w-full">
+<section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 2xl:max-w-full">
   {/* Block to display the feature image */}
-  <div class="relative mb-6 overflow-hidden md:mb-8">
+  <div class="relative mb-10 overflow-hidden rounded-2xl shadow-lg shadow-neutral-900/5 ring-1 ring-neutral-900/10 md:mb-14 dark:ring-neutral-100/10">
     {src && alt && (
       <Image
         src={src}
@@ -37,7 +37,7 @@ const { title, subTitle, src, alt, features } = Astro.props;
   </div>
 
   {/* Displaying the main content consisting of title, subtitle, and several `IconBlock` components */}
-  <div class="mt-5 grid gap-8 lg:mt-16 lg:grid-cols-3 lg:gap-12">
+  <div class="grid gap-10 lg:grid-cols-3 lg:gap-12">
     {/* Block for title and subtitle */}
     <div class="lg:col-span-1">
       {/* Rendering title */}
@@ -54,13 +54,17 @@ const { title, subTitle, src, alt, features } = Astro.props;
 
     {/* Block to display the IconBlock components */}
     <div class="lg:col-span-2">
-      <div class="grid gap-8 sm:grid-cols-2 md:gap-12">
+      <div class="grid gap-6 sm:grid-cols-2">
         {/* Injecting IconBlock components with different properties */}
         {features &&
           features.map(feature => (
-            <IconBlock heading={feature.heading} content={feature.content}>
-              <Icon name={feature.svg} />
-            </IconBlock>
+            <div class="rounded-2xl bg-white p-6 ring-1 ring-neutral-200/80 transition duration-300 hover:ring-blue-200 hover:shadow-md hover:shadow-neutral-900/5 dark:bg-neutral-900 dark:ring-neutral-800 dark:hover:ring-blue-400/30">
+              <IconBlock heading={feature.heading} content={feature.content}>
+                <span class="flex size-11 shrink-0 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-400/10">
+                  <Icon name={feature.svg} />
+                </span>
+              </IconBlock>
+            </div>
           ))}
       </div>
     </div>

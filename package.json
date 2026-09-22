@@ -1,5 +1,5 @@
 {
-  "name": "screwfast-template",
+  "name": "ferrulex",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -37,5 +37,8 @@
     "prettier-plugin-astro": "^1.0.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "^6.0.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
   }
 }

@@ -1,7 +1,4 @@
----
-// Import the necessary components
-import StatsBig from '@components/ui/blocks/StatsBig.astro';
-import StatsSmall from '@components/ui/blocks/StatsSmall.astro';
+﻿---
 
 const { title, subTitle, stats, mainStatTitle, mainStatSubTitle } = Astro.props;
 
@@ -37,15 +34,20 @@ type Stat = {
   <div class="grid items-center gap-6 lg:grid-cols-12 lg:gap-12">
     {/* First grid item, showing a big statistics */}
     <div class="lg:col-span-4">
-      <StatsBig title={mainStatTitle} subTitle={mainStatSubTitle} />
+      <div class="rounded-xl bg-neutral-100 p-6 dark:bg-neutral-900">
+        <p class="text-5xl font-extrabold text-neutral-800 dark:text-neutral-100">{mainStatTitle}</p>
+        <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">{mainStatSubTitle}</p>
+      </div>
     </div>
     {/* Second grid item, showing multiple small statistics */}
     {stats && (
       <div class="relative lg:col-span-8 lg:before:absolute lg:before:-start-12 lg:before:top-0 lg:before:h-full lg:before:w-px lg:before:bg-neutral-300 lg:dark:before:bg-neutral-700">
         <div class="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4 lg:grid-cols-3">
-          {/* Iterate over the 'stats' array and create a 'StatsSmall' component for each object in the array */}
           {stats.map(stat => (
-            <StatsSmall title={stat.stat} subTitle={stat.description} />
+            <div class="rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-900">
+              <p class="font-bold text-neutral-800 dark:text-neutral-100">{stat.stat}</p>
+              <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">{stat.description}</p>
+            </div>
           ))}
         </div>
       </div>

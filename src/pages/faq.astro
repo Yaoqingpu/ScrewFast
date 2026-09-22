@@ -1,0 +1,54 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import SupportPage from '@components/sections/misc/SupportPage.astro';
+import faqsData from '@data/faqs.json';
+import { SITE } from '@data/constants';
+
+const pageTitle = `FAQ — Stainless Fittings Factory | ${SITE.title}`;
+const metaDescription =
+  'FAQ for FerruleX stainless steel fittings: factory vs trader, delivery, RFQ, threads, materials and how export ordering works without a shopping cart.';
+
+const faqs = faqsData.faqs;
+---
+
+<MainLayout
+  title={pageTitle}
+  customDescription={metaDescription}
+  customOgTitle={pageTitle}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${SITE.url}/faq/`,
+    url: `${SITE.url}/faq/`,
+    name: pageTitle,
+    description: metaDescription,
+    inLanguage: 'en-US',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  }}
+>
+  <SupportPage
+    title="Frequently asked questions"
+    lead={faqsData.subTitle}
+  >
+    {
+      faqs.map(f => (
+        <>
+          <h2>{f.question}</h2>
+          <p>{f.answer}</p>
+        </>
+      ))
+    }
+
+    <h2>More reading</h2>
+    <ul>
+      <li><a href="/about/">About the factory</a></li>
+      <li><a href="/delivery/">Delivery &amp; lead times</a></li>
+      <li><a href="/quality/">Quality &amp; certificates</a></li>
+      <li><a href="/blog/">Technical blog</a></li>
+    </ul>
+  </SupportPage>
+</MainLayout>
