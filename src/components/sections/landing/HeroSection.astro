@@ -93,21 +93,21 @@ interface Props {
     )}
   </div>
 
-  {/* Hero Image Section — fills the text column height on md+, aspect ratio reserves space on mobile */}
-  <div class="flex w-full">
-    <div class="relative aspect-[3/2] w-full overflow-hidden rounded-2xl shadow-xl shadow-neutral-900/10 ring-1 ring-neutral-900/10 md:aspect-auto md:h-full md:min-h-[420px] lg:min-h-[480px] dark:ring-neutral-100/10">
+  {/* Hero Image Section — square keeps a vertical product (valve) fully in frame */}
+  <div class="flex w-full justify-center md:justify-end">
+    <div class="relative aspect-square w-full max-w-md overflow-hidden rounded-2xl shadow-xl shadow-neutral-900/10 ring-1 ring-neutral-900/10 md:w-auto md:max-w-none lg:h-full lg:max-h-[620px] lg:w-auto dark:ring-neutral-100/10">
       {src && alt && (
         <Image
           src={src}
           alt={alt}
           class="absolute inset-0 h-full w-full object-cover object-center"
-          widths={[480, 812, 1218]}
-          sizes="(max-width: 768px) 100vw, 50vw"
+          widths={[480, 700, 900]}
+          sizes="(max-width: 768px) 100vw, 40vw"
           draggable={'false'}
           loading="eager"
           fetchpriority="high"
-          width={812}
-          height={541}
+          width={700}
+          height={700}
           format={'avif'}
         />
       )}
