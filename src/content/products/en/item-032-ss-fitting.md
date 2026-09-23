@@ -1,7 +1,7 @@
 ﻿---
 title: 'Quick-Screw Tee Connector'
 description: 'Quick-Screw Tee Connector: three-way stainless steel tube fittings for air circuits. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'quick-screw-fittings'
 slug: 'quick-screw-tee-connector'
 main:
   id: 32

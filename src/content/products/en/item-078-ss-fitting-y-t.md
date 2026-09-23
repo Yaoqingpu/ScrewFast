@@ -1,7 +1,7 @@
 ﻿---
 title: 'Y-Type and T-Type Tee Fitting'
 description: 'Y-Type and T-Type Tee Fitting: stainless Y/T branching pipe fittings, NPT/G/metric. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'adapters-and-weld'
 slug: 'y-type-and-t-type-tee-fitting'
 main:
   id: 78

@@ -1,7 +1,7 @@
 ﻿---
 title: 'Push-to-Connect Elbow Fitting'
 description: 'Push-to-Connect Elbow Fitting: 90° stainless push-in fitting for crowded bases. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'push-to-connect'
 slug: 'push-to-connect-elbow-fitting'
 main:
   id: 75

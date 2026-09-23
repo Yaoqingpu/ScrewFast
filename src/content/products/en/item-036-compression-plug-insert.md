@@ -1,7 +1,7 @@
 ---
 title: 'Compression Plug Insert'
 description: 'Compression Plug Insert: insert blank for stainless steel compression fittings ports. SS316/304. FerruleX RFQ. Stocked sizes ship fast. Fast stock shipping.'
-category: 'compression-fittings'
+category: 'plugs-and-barbs'
 slug: 'compression-plug-insert'
 main:
   id: 36

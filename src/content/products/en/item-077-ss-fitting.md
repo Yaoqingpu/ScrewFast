@@ -1,7 +1,7 @@
 ﻿---
 title: 'Push-to-Connect Bulkhead Fitting'
 description: 'Push-to-Connect Bulkhead Fitting: panel-pass stainless push-in fitting. SS304/316. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'push-to-connect'
 slug: 'push-to-connect-bulkhead-fitting'
 main:
   id: 77

@@ -1,7 +1,7 @@
 ---
 title: 'Flanged Hex Head Plug'
 description: 'Flanged Hex Head Plug: stainless plug with hex head and flange stop. SS304/316. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'plugs-and-barbs'
 slug: 'flanged-hex-head-plug'
 main:
   id: 40

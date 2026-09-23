@@ -1,7 +1,7 @@
 ---
 title: 'Male-Female Straight Adapter'
 description: 'Male-Female Straight Adapter: stainless steel pipe fittings converting NPT/G/metric threads. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'adapters-and-weld'
 slug: 'male-female-straight-adapter'
 main:
   id: 42

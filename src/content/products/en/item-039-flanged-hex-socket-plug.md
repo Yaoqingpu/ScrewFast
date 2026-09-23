@@ -1,7 +1,7 @@
 ---
 title: 'Flanged Hex Socket Plug'
 description: 'Flanged Hex Socket Plug: stainless plug with flange shoulder and internal hex. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'plugs-and-barbs'
 slug: 'flanged-hex-socket-plug'
 main:
   id: 39

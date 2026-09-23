@@ -1,7 +1,7 @@
 ---
 title: 'Square Head Plug'
 description: 'Square Head Plug: high-torque stainless steel pipe fittings blank with square drive. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'plugs-and-barbs'
 slug: 'square-head-plug'
 main:
   id: 41

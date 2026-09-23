@@ -2,6 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import SupportPage from '@components/sections/misc/SupportPage.astro';
 import { SITE } from '@data/constants';
+import supportImg from '@images/apps/support-oem.jpg';
 
 const pageTitle = `OEM & Custom Stainless Fittings | ${SITE.title}`;
 const metaDescription =
@@ -26,6 +27,8 @@ const metaDescription =
   <SupportPage
     title="OEM and non-catalog parts"
     lead="If the part is in the catalog, order that SKU. If the drawing changes an end, a thread or a mark, send the file. We check whether we can machine it, then quote quantity and days."
+    src={supportImg}
+    alt="Custom and non-standard stainless fittings from the factory sample gallery"
   >
     <h2>What we will change</h2>
     <ul>

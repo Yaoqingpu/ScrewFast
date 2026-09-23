@@ -1,7 +1,7 @@
 ---
 title: 'Quick-Screw Straight Connector'
 description: 'Quick-Screw Straight Connector: stainless steel tube fittings, tube to thread, ~1000 PSI. FerruleX factory RFQ. Stocked sizes ship fast. Fast stock shipping.'
-category: 'tube-fittings'
+category: 'quick-screw-fittings'
 slug: 'quick-screw-straight-connector'
 main:
   id: 28

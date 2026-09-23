@@ -1,7 +1,7 @@
 ---
 title: 'Push-In Quick-Screw Fittings'
 description: 'Push-In Quick-Screw Fittings: stainless steel tube fittings, OD 4–16 mm, ~1000 PSI. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'quick-screw-fittings'
 slug: 'push-in-quick-screw-fittings'
 main:
   id: 27

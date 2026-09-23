@@ -1,7 +1,7 @@
 ---
 title: 'Hex Head Plug'
 description: 'Hex Head Plug: external-hex stainless steel pipe fittings blank for female ports. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'plugs-and-barbs'
 slug: 'hex-head-plug'
 main:
   id: 38

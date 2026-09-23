@@ -1,7 +1,7 @@
 ---
 title: 'Quick-Screw Straight Union'
 description: 'Quick-Screw Straight Union: stainless steel tube fittings for equal tube-to-tube joins. FerruleX factory RFQ. Stocked sizes ship fast. Fast stock shipping.'
-category: 'tube-fittings'
+category: 'quick-screw-fittings'
 slug: 'quick-screw-straight-union'
 main:
   id: 30

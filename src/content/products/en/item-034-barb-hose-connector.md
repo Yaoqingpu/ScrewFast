@@ -1,7 +1,7 @@
 ---
 title: 'Barb Hose Connector'
 description: 'Barb Hose Connector: stainless barb to NPT/G/metric thread for soft hose. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'plugs-and-barbs'
 slug: 'barb-hose-connector'
 main:
   id: 34

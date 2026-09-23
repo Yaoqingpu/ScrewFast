@@ -1,7 +1,7 @@
 ---
 title: 'Weld Straight Connector'
 description: 'Weld Straight Connector: stainless weld-end pipe/tube connector for permanent joints. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Fast stock shipping.'
-category: 'pipe-fittings'
+category: 'adapters-and-weld'
 slug: 'weld-straight-connector'
 main:
   id: 45

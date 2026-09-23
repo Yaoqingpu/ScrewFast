@@ -1,7 +1,7 @@
 ---
 title: 'Quick-Screw Bulkhead Connector'
 description: 'Quick-Screw Bulkhead Connector: panel-pass stainless steel tube fittings, OD 4–16 mm. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'quick-screw-fittings'
 slug: 'quick-screw-bulkhead-connector'
 main:
   id: 33

@@ -1,7 +1,7 @@
 ---
 title: 'Female Threaded Tee'
 description: 'Female Threaded Tee: all-female stainless steel pipe fittings for branching headers. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'adapters-and-weld'
 slug: 'female-threaded-tee'
 main:
   id: 44

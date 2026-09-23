@@ -1,7 +1,7 @@
 ---
 title: 'Pneumatic Silencer'
 description: 'Pneumatic Silencer: stainless exhaust muffler for solenoid and cylinder vents. FerruleX factory RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'plugs-and-barbs'
 slug: 'pneumatic-silencer'
 main:
   id: 84

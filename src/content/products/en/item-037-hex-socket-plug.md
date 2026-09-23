@@ -1,7 +1,7 @@
 ---
 title: 'Hex Socket Plug'
 description: 'Hex Socket Plug: internal-hex stainless steel pipe fittings blank for female ports. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'plugs-and-barbs'
 slug: 'hex-socket-plug'
 main:
   id: 37

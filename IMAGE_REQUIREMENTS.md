@@ -30,11 +30,13 @@ PDF 内嵌图即该分辨率,**从 PDF 换图无法提升清晰度**。剩余小
 
 | 文件名 | 产品 | 实测尺寸 |
 | --- | --- | --- |
-| p13-79-investment-cast-elbow.jpg | 精铸弯头 | 193×159 |
-| p13-80-investment-cast-tee.jpg | 精铸三通 | 158×133 |
-| p20-89-push-throttle-valve.jpg | 快插节流阀 | 196×166 |
-| p20-91-investment-cast-straight.jpg | 精铸直通 | 139×176 |
-| p20-92-investment-cast-cap.jpg | 精铸帽 | 190×172 |
+| p13-79-investment-cast-elbow.jpg | 精铸弯头 | ~~193×159~~ → **655×556**（晟泉裁切，2026-09-23） |
+| p13-80-investment-cast-tee.jpg | 精铸三通 | ~~158×133~~ → **655×554** |
+| p20-89-push-throttle-valve.jpg | 快插节流阀 | ~~196×166~~ → **513×435** |
+| p20-91-investment-cast-straight.jpg | 精铸直通 | 已替换 |
+| p20-92-investment-cast-cap.jpg | 精铸帽 | ~~190×172~~ → **513×434** |
+
+另：`scripts/fill_export_from_crops.py` 已把约 **89** 张产品图从晟泉裁切灌入英语站；补上遗漏型号 **Investment Cast Round Straight**（`item-081`）；首页 hero 用 `hero-plant-landscape.jpg`；services 营销图去重并修破折号乱码。
 
 ### B3. 营销大图(跨页复用/比例不对) —— 5 张
 

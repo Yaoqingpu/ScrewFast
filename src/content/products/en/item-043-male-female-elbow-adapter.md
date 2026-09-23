@@ -1,7 +1,7 @@
 ---
 title: 'Male-Female Elbow Adapter'
 description: 'Male-Female Elbow Adapter: 90° stainless steel pipe fittings changing thread gender/standard. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'pipe-fittings'
+category: 'adapters-and-weld'
 slug: 'male-female-elbow-adapter'
 main:
   id: 43

@@ -1,7 +1,7 @@
 ﻿---
 title: 'Push-to-Connect Straight Union'
 description: 'Push-to-Connect Straight Union: stainless push-in tube-to-tube union. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'push-to-connect'
 slug: 'push-to-connect-straight-union'
 main:
   id: 76

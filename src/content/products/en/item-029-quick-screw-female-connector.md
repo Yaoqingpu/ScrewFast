@@ -1,7 +1,7 @@
 ﻿---
 title: 'Quick-Screw Female Connector'
 description: 'Quick-Screw Female Connector: stainless steel tube fittings to female NPT/G ports. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'quick-screw-fittings'
 slug: 'quick-screw-female-connector'
 main:
   id: 29

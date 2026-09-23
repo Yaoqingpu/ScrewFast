@@ -25,3 +25,7 @@ pnpm-debug.log*
 mineru-out/
 .cursor/
 .omx/
+public/tmp-view/
+scripts/__pycache__/
+**/__pycache__/
+*.pyc

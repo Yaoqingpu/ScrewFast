@@ -5,7 +5,7 @@ import TabContent from '@components/ui/blocks/TabContent.astro';
 import Icon from '@components/ui/icons/Icon.astro';
 
 // Define props from Astro
-const { title, tabs } = Astro.props;
+const { title, tabs, idPrefix = 'tabs-with-card' } = Astro.props;
 
 // Define TypeScript interface for tab object
 interface Tab {
@@ -22,6 +22,8 @@ interface Tab {
 interface Props {
   title?: string;
   tabs: Tab[];
+  /** Unique prefix when multiple FeaturesNavs appear on one page */
+  idPrefix?: string;
 }
 ---
 
@@ -38,9 +40,9 @@ interface Props {
         <nav class="mt-5 grid gap-4 md:mt-10" aria-label="Tabs" role="tablist">
           {tabs.map((tab, index) => (
             <TabNav
-              id={`tabs-with-card-item-${index + 1}`}
-              dataTab={`#tabs-with-card-${index + 1}`}
-              aria={`tabs-with-card-${index + 1}`}
+              id={`${idPrefix}-item-${index + 1}`}
+              dataTab={`#${idPrefix}-${index + 1}`}
+              aria={`${idPrefix}-${index + 1}`}
               heading={tab.heading}
               content={tab.content}
               first={tab.first}
@@ -57,8 +59,8 @@ interface Props {
           <div>
             {tabs.map((tab, index) => (
               <TabContent
-                id={`tabs-with-card-${index + 1}`}
-                aria={`tabs-with-card-item-${index + 1}`}
+                id={`${idPrefix}-${index + 1}`}
+                aria={`${idPrefix}-item-${index + 1}`}
                 src={tab.src}
                 alt={tab.alt}
                 first={tab.first}

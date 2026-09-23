@@ -1,4 +1,4 @@
-﻿export type CategoryDef = {
+export type CategoryDef = {
   /** Short SEO path segment, e.g. compression-fittings */
   slug: string;
   /** Short buyer-facing intro shown under the h1 on category pages */
@@ -11,6 +11,11 @@
   match: string[];
 };
 
+/**
+ * Category order follows the Shengquan selection-manual series
+ * (corrugated hose → compression → quick-screw → plugs/barbs → adapters/weld →
+ *  ball → needle → check → tubing → push-to-connect → cast → custom).
+ */
 export const PRODUCT_CATEGORIES: CategoryDef[] = [
   {
     slug: 'corrugated-hose',
@@ -25,28 +30,77 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     match: ['corrugated hose', 'expansion joint', 'kf flexible', 'corrugated tube'],
   },
   {
+    slug: 'compression-fittings',
+    intro:
+      'Measure tube OD exactly (metric or inch). A double-ferrule joint is sized by tube, so the OD plus the port thread decides the part.',
+    title: 'Stainless Steel Compression Fittings',
+    shortTitle: 'Compression Fittings',
+    h1: 'Stainless Steel Compression Fittings (Double Ferrule)',
+    description:
+      'Double-ferrule connectors, elbows, tees, unions, bulkheads, ground-finish and forged series. Metric and inch tube. NPT, G and metric threads.',
+    keyword: 'stainless steel compression fittings',
+    match: [
+      'compression',
+      'ground finish',
+      'forged',
+      'cylinder connector',
+      'bulkhead union',
+    ],
+  },
+  {
+    slug: 'quick-screw-fittings',
+    intro:
+      'Quick-screw fittings speed panel work with a nut-and-ferrule bite on soft or hard tube. Confirm OD and thread gender on the RFQ.',
+    title: 'Stainless Steel Quick-Screw Fittings',
+    shortTitle: 'Quick-Screw',
+    h1: 'Stainless Steel Quick-Screw Tube Fittings',
+    description:
+      'Quick-screw straight, female, union, elbow, tee and bulkhead connectors for air and light fluid lines. Separate from push-to-connect series.',
+    keyword: 'quick screw fittings',
+    match: ['quick-screw', 'push-in quick-screw'],
+  },
+  {
+    slug: 'plugs-and-barbs',
+    intro:
+      'Plugs close unused ports; barb ends take hose. List every thread standard in the BOM so the blank matches the manifold.',
+    title: 'Stainless Steel Plugs & Barb Fittings',
+    shortTitle: 'Plugs & Barbs',
+    h1: 'Stainless Steel Plugs, Caps & Barb Hose Fittings',
+    description:
+      'Hex plugs, flanged plugs, square plugs, compression plug kits, ferrules, barb hose connectors, silencers and throttle valves.',
+    keyword: 'stainless steel plug fitting',
+    match: ['plug', 'barb', 'silencer', 'throttle', 'ferrule'],
+  },
+  {
+    slug: 'adapters-and-weld',
+    intro:
+      'Adapters and weld ends finish mixed-thread manifolds. Send both end standards when the two sides differ.',
+    title: 'Stainless Steel Adapters & Weld Fittings',
+    shortTitle: 'Adapters & Weld',
+    h1: 'Stainless Steel Thread Adapters & Weld Connectors',
+    description:
+      'Male-female adapters, elbows, tees, weld straight connectors and Y/T branch fittings for instrumentation manifolds.',
+    keyword: 'stainless steel adapter fitting',
+    match: [
+      'adapter',
+      'male-female',
+      'weld straight',
+      'female threaded tee',
+      'y-type',
+      'tee fitting',
+    ],
+  },
+  {
     slug: 'ball-valves',
     intro:
       'Pick the end first (compression, female thread or weld), then the flow pattern. Pressure class and seat material are confirmed on the quote, not assumed.',
     title: 'Stainless Steel Ball Valves',
     shortTitle: 'Ball Valves',
-    h1: 'Stainless Steel Ball Valves',
+    h1: 'Stainless Steel Ball Valves & Manifolds',
     description:
-      'Shutoff valves with compression, female thread or weld ends. Straight, angle, 3-way and high-pressure styles. Confirm the pressure class on the quote.',
+      'Shutoff valves with compression, female thread or weld ends — straight, angle, 3-way, mini, high-pressure and valve manifolds. Confirm the pressure class on the quote.',
     keyword: 'stainless steel ball valve',
-    match: ['ball valve'],
-  },
-  {
-    slug: 'check-valves',
-    intro:
-      'These valves are direction-sensitive. Mark flow direction and cracking pressure on the RFQ so the factory sets the spring or disc correctly.',
-    title: 'Stainless Steel Check Valves',
-    shortTitle: 'Check Valves',
-    h1: 'Stainless Steel Check Valves & Inline Filters',
-    description:
-      'One-way valves in compression, female thread and split-body styles, plus inline filters. Mark flow direction on the order.',
-    keyword: 'stainless steel check valve',
-    match: ['check valve', 'inline filter'],
+    match: ['ball valve', 'valve manifold'],
   },
   {
     slug: 'needle-valves',
@@ -61,57 +115,16 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     match: ['needle valve', 'globe valve'],
   },
   {
-    slug: 'compression-fittings',
+    slug: 'check-valves',
     intro:
-      'Measure tube OD exactly (metric or inch). A double-ferrule joint is sized by tube, so the OD plus the port thread decides the part.',
-    title: 'Stainless Steel Compression Fittings',
-    shortTitle: 'Compression Fittings',
-    h1: 'Stainless Steel Compression Fittings (Double Ferrule)',
+      'These valves are direction-sensitive. Mark flow direction and cracking pressure on the RFQ so the factory sets the spring or disc correctly.',
+    title: 'Stainless Steel Check Valves',
+    shortTitle: 'Check Valves',
+    h1: 'Stainless Steel Check Valves & Inline Filters',
     description:
-      'Double-ferrule connectors, elbows, tees, unions and bulkheads. Metric and inch tube. NPT, G and metric threads.',
-    keyword: 'stainless steel compression fittings',
-    match: [
-      'compression',
-      'ferrule',
-      'ground finish',
-      'forged',
-      'cylinder connector',
-      'bulkhead',
-    ],
-  },
-  {
-    slug: 'tube-fittings',
-    intro:
-      'Quick-screw and push-in fittings speed up panel assembly. Confirm media and pressure — push-to-connect suits air, not steam.',
-    title: 'Stainless Steel Tube Fittings',
-    shortTitle: 'Quick-Screw Fittings',
-    h1: 'Stainless Steel Quick-Screw & Push Tube Fittings',
-    description:
-      'Quick-screw, push-to-connect and barb stainless steel tube fittings for air and light fluid lines. Fast install without flaring.',
-    keyword: 'stainless steel tube fittings',
-    match: ['quick-screw', 'push-in', 'push-to-connect', 'barb'],
-  },
-  {
-    slug: 'pipe-fittings',
-    intro:
-      'These complete the manifold: plugs, adapters, tees, silencers and throttle valves. List every thread standard in the BOM, not just one.',
-    title: 'Stainless Steel Pipe Fittings & Plugs',
-    shortTitle: 'Adapters & Plugs',
-    h1: 'Stainless Steel Adapters, Plugs & Threaded Fittings',
-    description:
-      'Threaded adapters, plugs, caps, silencers, throttle valves and Y/T tees to complete stainless instrumentation manifolds.',
-    keyword: 'stainless steel fittings',
-    match: [
-      'plug',
-      'adapter',
-      'male-female',
-      'female threaded tee',
-      'weld straight',
-      'silencer',
-      'throttle',
-      'y-type',
-      'tee fitting',
-    ],
+      'One-way valves in compression, female thread and split-body styles, plus inline filters. Mark flow direction on the order.',
+    keyword: 'stainless steel check valve',
+    match: ['check valve', 'inline filter'],
   },
   {
     slug: 'instrumentation-tubing',
@@ -126,6 +139,18 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     match: ['ba tube', 'precision tube', 'coil tube', 'tube clamp'],
   },
   {
+    slug: 'push-to-connect',
+    intro:
+      'Push-to-connect is for compatible tube OD and hardness — typically air and light utilities, not steam. Confirm OD before ordering.',
+    title: 'Stainless Steel Push-to-Connect Fittings',
+    shortTitle: 'Push-to-Connect',
+    h1: 'Stainless Steel Push-to-Connect (Push-In) Fittings',
+    description:
+      'Push-in straight, elbow, union and bulkhead fittings for rapid tube changes on pneumatic and utility lines. Separate series from quick-screw.',
+    keyword: 'push to connect stainless fitting',
+    match: ['push-to-connect', 'push-in'],
+  },
+  {
     slug: 'cast-fittings',
     intro:
       'Investment-cast bodies suit general process connections. Tell us the casting size and port style; machining tolerance is confirmed at RFQ.',
@@ -133,9 +158,21 @@ export const PRODUCT_CATEGORIES: CategoryDef[] = [
     shortTitle: 'Cast Fittings',
     h1: 'Investment Cast Stainless Steel Fittings',
     description:
-      'Investment-cast stainless elbows, tees and caps for general process connections. SS304 / SS316 options.',
-    keyword: 'stainless steel fittings',
+      'Investment-cast stainless elbows, tees, straights, unions, caps and cast ball valves for general process connections. SS304 / SS316.',
+    keyword: 'investment cast stainless fitting',
     match: ['investment cast'],
+  },
+  {
+    slug: 'custom-fittings',
+    intro:
+      'Non-standard parts from the custom page of the factory manual. Send a drawing or photo with size, grade and quantity for a manufacturability review.',
+    title: 'Custom & Non-Standard Fittings',
+    shortTitle: 'Custom / Non-Standard',
+    h1: 'Custom & Non-Standard Stainless Steel Fittings',
+    description:
+      'Factory custom and non-standard stainless fittings — special elbows, tees, valve bodies and machined parts beyond the stocked catalog lines.',
+    keyword: 'custom stainless steel fittings',
+    match: ['custom', 'non-standard', 'nonstandard'],
   },
 ];
 
@@ -144,11 +181,17 @@ export function categoryFromTitle(title: string): CategoryDef {
   for (const cat of PRODUCT_CATEGORIES) {
     if (cat.match.some(m => t.includes(m))) return cat;
   }
-  return PRODUCT_CATEGORIES.find(c => c.slug === 'pipe-fittings')!;
+  return PRODUCT_CATEGORIES.find(c => c.slug === 'adapters-and-weld')!;
 }
 
 export function getCategory(slug: string): CategoryDef | undefined {
-  return PRODUCT_CATEGORIES.find(c => c.slug === slug);
+  // Legacy slugs from earlier IA — keep bookmarks working
+  const aliases: Record<string, string> = {
+    'tube-fittings': 'quick-screw-fittings',
+    'pipe-fittings': 'adapters-and-weld',
+  };
+  const resolved = aliases[slug] ?? slug;
+  return PRODUCT_CATEGORIES.find(c => c.slug === resolved);
 }
 
 /** Flat product URL: /products/{slug}/ — category stays in breadcrumbs, not the path. */
@@ -157,7 +200,11 @@ export function productPath(_category: string, slug: string): string {
 }
 
 export function categoryPath(slug: string): string {
-  return `/products/${slug}/`;
+  const aliases: Record<string, string> = {
+    'tube-fittings': 'quick-screw-fittings',
+    'pipe-fittings': 'adapters-and-weld',
+  };
+  return `/products/${aliases[slug] ?? slug}/`;
 }
 
 export function productsHubPath(): string {

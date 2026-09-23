@@ -4,11 +4,21 @@ export const SITE = {
   title: 'FerruleX',
   tagline: 'Factory Stainless Steel Valves & Fittings — Fast Delivery',
   description:
-    'FerruleX is a China stainless steel fittings factory for export buyers. We manufacture and stock compression fittings, ball valves, needle valves and corrugated hose. Fast delivery on common sizes — request a quote.',
+    'FerruleX is a Nanjing, China factory for stainless steel compression fittings, ball valves, needle valves, check valves and corrugated hose. For many years we have supplied export OEM and project RFQs — SS304 / SS316 / SS316L, stocked sizes ship in 5–7 days.',
   description_short:
-    'Factory-direct stainless steel fittings with fast delivery for OEM and project RFQs.',
+    'China factory for stainless steel fittings and valves — compression, ball, needle, hose. Export RFQ. Stocked sizes ship fast.',
   url: 'https://ferrulex.com',
   author: 'FerruleX',
+  email: 'sales@ferrulex.com',
+  /** Public factory / courier address */
+  address: 'No. 212, Lantian Road, Lukou District, Jiangning, Nanjing, China',
+  addressParts: {
+    street: 'No. 212, Lantian Road, Lukou District, Jiangning',
+    locality: 'Nanjing',
+    region: 'Jiangsu',
+    postalCode: '',
+    country: 'CN',
+  },
 };
 
 export const SEO = {
@@ -37,7 +47,7 @@ export const OG = {
   url: SITE.url,
   title: `${SITE.title}: Factory Stainless Fittings — Fast Delivery`,
   description:
-    'China factory for stainless steel compression fittings, ball valves and corrugated hose. Fast delivery on stocked sizes — request a quote.',
+    'Nanjing factory for stainless steel compression fittings, ball valves, needle valves and corrugated hose. Stocked sizes ship fast — request a quote.',
   image: ogImageSrc,
 };
 

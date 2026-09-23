@@ -2,6 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import SupportPage from '@components/sections/misc/SupportPage.astro';
 import { SITE } from '@data/constants';
+import supportImg from '@images/apps/support-delivery.jpg';
 
 const pageTitle = `Delivery & Lead Times | ${SITE.title}`;
 const metaDescription =
@@ -26,6 +27,8 @@ const metaDescription =
   <SupportPage
     title="Delivery, payment and packing"
     lead="Two clocks matter: days in our plant, then days on the ship. Stocked fittings are about 5–7 days after you confirm. Make-to-order is about 15–25 days of production, then transit. The quote states both."
+    src={supportImg}
+    alt="Stainless ball valves ready for export packing — factory catalog sample"
   >
     <h2>When it leaves the factory</h2>
     <p>
@@ -46,7 +49,7 @@ const metaDescription =
 
     <h2>Where it ships from</h2>
     <p>
-      The default offer is FOB Shanghai or FOB Ningbo. CIF, EXW or another term is fine if you write the destination. Size charts and ordering notes for the threaded ball valve series are on the
+      Goods leave from our plant at {SITE.address}. The default offer is FOB Shanghai or FOB Ningbo. CIF, EXW or another term is fine if you write the destination. Size charts and ordering notes for the threaded ball valve series are on the
       <a href="/2-piece-ball-valve/">2-piece ball valve page</a>.
     </p>
   </SupportPage>

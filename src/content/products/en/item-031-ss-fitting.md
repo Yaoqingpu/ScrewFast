@@ -1,7 +1,7 @@
 ﻿---
 title: 'Quick-Screw Elbow Connector'
 description: 'Quick-Screw Elbow Connector: 90° stainless steel tube fittings for tight cabinets. OD 4–6 mm. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'quick-screw-fittings'
 slug: 'quick-screw-elbow-connector'
 main:
   id: 31

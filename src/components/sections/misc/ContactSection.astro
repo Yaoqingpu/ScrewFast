@@ -6,6 +6,7 @@ import EmailContactInput from '@components/ui/forms/input/EmailContactInput.astr
 import PhoneInput from '@components/ui/forms/input/PhoneInput.astro';
 import TextAreaInput from '@components/ui/forms/input/TextAreaInput.astro';
 import Icon from '@components/ui/icons/Icon.astro';
+import { SITE } from '@data/constants';
 
 const copy = {
   formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || '',
@@ -20,17 +21,19 @@ const copy = {
   details: 'Size, material, quantity, destination, notes',
   send: 'Submit RFQ',
   demoMessage:
-    'Thanks. This form is not connected yet — email sales@ferrulex.com and we reply to RFQs sent through the email form.',
+    `Thanks. This form is not connected yet — email ${SITE.email} and we reply to RFQs sent through the email form.`,
   catalogHeading: 'Product catalog',
   catalogContent:
-    '90 stocked-and-quoted lines: compression fittings, ball valves, needle valves, corrugated hose.',
+    '105 stocked-and-quoted lines: compression fittings, ball valves, needle valves, corrugated hose.',
   catalogLink: 'View products',
   faqHeading: 'FAQ',
   faqContent:
     'Quick answers on materials, threads, MOQ and how RFQ ordering works.',
   faqLink: 'Visit FAQ',
-  officeHeading: 'OEM & project supply',
-  officeContent: 'FerruleX factory — China (export RFQ)',
+  officeHeading: 'Factory address',
+  officeContent:
+    'FerruleX — Nanjing stainless steel fittings factory. Export RFQ and courier delivery.',
+  officeAddress: SITE.address,
   emailHeading: 'Email us',
   emailContent: 'Prefer email? Write to',
 };
@@ -123,7 +126,8 @@ const copy = {
         <ContactIconBlock
           heading={copy.officeHeading}
           content={copy.officeContent}
-          isAddressVisible={false}
+          isAddressVisible={true}
+          addressContent={copy.officeAddress}
         >
           <Icon name="mapPin" />
         </ContactIconBlock>
@@ -132,8 +136,8 @@ const copy = {
           heading={copy.emailHeading}
           content={copy.emailContent}
           isLinkVisible={true}
-          linkTitle="sales@ferrulex.com"
-          linkURL="mailto:sales@ferrulex.com"
+          linkTitle={SITE.email}
+          linkURL={`mailto:${SITE.email}`}
         >
           <Icon name="envelopeOpen" />
         </ContactIconBlock>

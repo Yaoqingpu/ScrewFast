@@ -1,7 +1,7 @@
 ﻿---
 title: 'Compression / Quick-Screw Straight & Bulkhead Connectors'
 description: 'Compression / Quick-Screw Straight & Bulkhead: hybrid stainless fittings for mixed tube styles. FerruleX RFQ. Stocked sizes ship fast. Fast stock shipping.'
-category: 'compression-fittings'
+category: 'quick-screw-fittings'
 slug: 'compression-quick-screw-straight-bulkhead-connectors'
 main:
   id: 17

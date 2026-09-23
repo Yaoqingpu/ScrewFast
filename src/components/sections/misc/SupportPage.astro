@@ -1,8 +1,10 @@
 ---
 /**
- * Shared layout blocks for supporting pages (About, Delivery, Quality, etc.).
- * Keep pages concise — one H1, short sections, one RFQ CTA.
+ * Shared layout for supporting pages (About, Delivery, Quality, OEM, Applications, FAQ).
+ * Optional catalog sample photo under the lead.
  */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import PrimaryCTA from '@components/ui/buttons/PrimaryCTA.astro';
 
 interface Props {
@@ -10,6 +12,9 @@ interface Props {
   lead: string;
   ctaTitle?: string;
   ctaUrl?: string;
+  /** Optional Shengquan / catalog sample photo */
+  src?: ImageMetadata;
+  alt?: string;
 }
 
 const {
@@ -17,25 +22,47 @@ const {
   lead,
   ctaTitle = 'Request a Quote',
   ctaUrl = '/contact/',
+  src,
+  alt = 'FerruleX stainless steel fittings — factory catalog sample',
 } = Astro.props;
 ---
 
 <section class="mx-auto max-w-[85rem] px-4 pt-10 pb-4 sm:px-6 sm:pt-14 lg:px-8">
-  <div class="max-w-3xl">
-    <h1 class="text-3xl font-extrabold tracking-tight text-balance text-neutral-800 sm:text-4xl dark:text-neutral-200">
-      {title}
-    </h1>
-    <p class="mt-4 text-lg text-pretty text-neutral-600 dark:text-neutral-400">
-      {lead}
-    </p>
-    <div class="mt-8">
-      <PrimaryCTA title={ctaTitle} url={ctaUrl} />
+  <div class={`grid gap-10 ${src ? 'lg:grid-cols-2 lg:items-center' : ''}`}>
+    <div class="max-w-3xl">
+      <h1
+        class="text-3xl font-extrabold tracking-tight text-balance text-neutral-800 sm:text-4xl dark:text-neutral-200"
+      >
+        {title}
+      </h1>
+      <p class="mt-4 text-lg text-pretty text-neutral-600 dark:text-neutral-400">
+        {lead}
+      </p>
+      <div class="mt-8">
+        <PrimaryCTA title={ctaTitle} url={ctaUrl} />
+      </div>
     </div>
+    {
+      src && (
+        <Image
+          class="w-full rounded-xl object-cover shadow-sm ring-1 ring-neutral-200 dark:ring-neutral-700"
+          src={src}
+          alt={alt}
+          widths={[480, 768, 1200]}
+          sizes="(max-width: 1024px) 100vw, 40rem"
+          format="avif"
+          loading="eager"
+          draggable={false}
+        />
+      )
+    }
   </div>
 </section>
 
 <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
-  <div class="max-w-3xl space-y-8 text-neutral-700 dark:text-neutral-300 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-neutral-800 dark:[&_h2]:text-neutral-200 [&_p]:mt-3 [&_p]:leading-relaxed [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_a]:text-blue-700 [&_a]:underline-offset-2 hover:[&_a]:underline dark:[&_a]:text-blue-600">
+  <div
+    class="max-w-3xl space-y-8 text-neutral-700 dark:text-neutral-300 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-neutral-800 dark:[&_h2]:text-neutral-200 [&_p]:mt-3 [&_p]:leading-relaxed [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_a]:text-blue-700 [&_a]:underline-offset-2 hover:[&_a]:underline dark:[&_a]:text-blue-600"
+  >
     <slot />
   </div>
   <div class="mt-12 max-w-3xl border-t border-neutral-200 pt-8 dark:border-neutral-700">

@@ -1,7 +1,7 @@
 ---
 title: 'Push-to-Connect Throttle Valve'
 description: 'Push-to-Connect Throttle Valve: stainless flow control for air lines, OD 3–25 mm, about 3000 PSI. SS304/316. FerruleX RFQ. Stocked sizes ship fast.'
-category: 'tube-fittings'
+category: 'push-to-connect'
 slug: 'push-to-connect-throttle-valve'
 main:
   id: 89

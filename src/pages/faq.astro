@@ -3,6 +3,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import SupportPage from '@components/sections/misc/SupportPage.astro';
 import faqsData from '@data/faqs.json';
 import { SITE } from '@data/constants';
+import supportImg from '@images/apps/support-faq.jpg';
 
 const pageTitle = `FAQ — Stainless Fittings Factory | ${SITE.title}`;
 const metaDescription =
@@ -33,6 +34,8 @@ const faqs = faqsData.faqs;
   <SupportPage
     title="Frequently asked questions"
     lead={faqsData.subTitle}
+    src={supportImg}
+    alt="Stainless compression fittings — FerruleX catalog sample"
   >
     {
       faqs.map(f => (

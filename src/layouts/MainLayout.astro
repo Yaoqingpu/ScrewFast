@@ -17,6 +17,8 @@ const {
   hideFooter = false,
 } = Astro.props;
 
+const ga4Id: string | undefined = import.meta.env.PUBLIC_GA4_ID;
+
 // Interface to type-check the properties
 interface Props {
   title?: string;
@@ -31,6 +33,23 @@ interface Props {
 
 <html lang={lang} class="scrollbar-hide lenis lenis-smooth scroll-pt-16">
   <head>
++    {/* Google Analytics 4 - active when PUBLIC_GA4_ID is set. */}
+    {ga4Id && (
+      <>
+        <script
+          is:inline
+          src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}
+          async
+        ></script>
+        <script is:inline define:vars={{ ga4Id }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', ga4Id);
+        </script>
+      </>
+    )}
+
     {/* Adding metadata to the HTML document */}
     <Meta
       meta={meta}

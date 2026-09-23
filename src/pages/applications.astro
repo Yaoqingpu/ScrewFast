@@ -2,6 +2,7 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import SupportPage from '@components/sections/misc/SupportPage.astro';
 import { SITE } from '@data/constants';
+import supportImg from '@images/apps/support-applications.jpg';
 
 const pageTitle = `Industry Applications | ${SITE.title}`;
 const metaDescription =
@@ -26,6 +27,8 @@ const metaDescription =
   <SupportPage
     title="Where the parts are used"
     lead="Same catalog, different duty. Name the media and the environment on the RFQ so we do not quote a utility fitting into a chloride line."
+    src={supportImg}
+    alt="Stainless compression fittings for instrumentation and process panels"
   >
     <h2>Analyzer and instrument panels</h2>
     <p>

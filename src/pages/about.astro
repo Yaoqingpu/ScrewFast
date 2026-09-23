@@ -2,10 +2,11 @@
 import MainLayout from '@/layouts/MainLayout.astro';
 import SupportPage from '@components/sections/misc/SupportPage.astro';
 import { SITE } from '@data/constants';
+import supportImg from '@images/apps/support-about.jpg';
 
 const pageTitle = `About FerruleX Factory | ${SITE.title}`;
 const metaDescription =
-  'FerruleX is a China stainless steel fittings factory for export OEM buyers: compression fittings, ball valves, needle valves and hose. Stocked sizes ship fast.';
+  'FerruleX is a Nanjing stainless steel fittings factory for export OEM and project RFQs. Compression, valves, hose — SS304/316/316L. RFQ only.';
 ---
 
 <MainLayout
@@ -21,38 +22,50 @@ const metaDescription =
     description: metaDescription,
     inLanguage: 'en-US',
     isPartOf: { '@type': 'WebSite', url: SITE.url, name: SITE.title },
+    about: { '@id': `${SITE.url}#org` },
   }}
 >
   <SupportPage
-    title="About the factory"
-    lead="FerruleX makes stainless fittings and valves for export buyers. You browse the catalog, send a size list, and get a factory quote. Stocked sizes move in days. Custom parts get a written lead time."
+    title="About FerruleX"
+    lead="Our brand is FerruleX. We are a stainless steel fittings and valves factory in Nanjing, China. For many years we have supplied export OEM and project buyers — RFQ only, no cart."
+    src={supportImg}
+    alt="FerruleX stainless fittings and valves — factory catalog samples"
   >
-    <h2>What leaves the plant</h2>
+    <h2>What we make</h2>
     <p>
-      The catalog is the work we actually run: <a href="/products/compression-fittings/">double-ferrule compression fittings</a>,
+      For many years the plant has focused on the lines buyers actually search and RFQ:
+      <a href="/products/compression-fittings/">stainless steel compression fittings</a>,
       <a href="/products/ball-valves/">ball valves</a>,
       <a href="/products/needle-valves/">needle valves</a>,
       <a href="/products/check-valves/">check valves</a>,
-      <a href="/products/corrugated-hose/">corrugated hose</a>,
-      quick-screw and push-to-connect fittings, cast fittings, and tube accessories. Standard grades are SS304, SS316 and SS316L. If a line is not in the catalog, do not assume we make it — ask on the RFQ.
+      <a href="/products/corrugated-hose/">corrugated stainless steel hose</a>,
+      <a href="/products/quick-screw-fittings/">quick-screw</a> and
+      <a href="/products/push-to-connect/">push-to-connect</a> fittings,
+      <a href="/products/adapters-and-weld/">adapters and weld ends</a>,
+      <a href="/products/plugs-and-barbs/">plugs and barbs</a>,
+      <a href="/products/instrumentation-tubing/">instrumentation tube</a>,
+      <a href="/products/cast-fittings/">investment-cast fittings</a>, and
+      <a href="/products/custom-fittings/">custom / non-standard parts</a>.
+      The live catalog has about 105 stocked-and-quoted lines. Standard grades are SS304, SS316 and SS316L. Tube sizes cover metric and inch; port threads are NPT, G and metric. If a line is not on the catalog page, ask on the RFQ — do not assume we make it.
     </p>
 
-    <h2>Why buyers come here</h2>
+    <h2>Who we serve</h2>
     <p>
-      Quotes, size checks and packing are handled at the factory. Common metric and inch sizes stay in stock so a confirmed order does not wait for a remake. Drawings for non-standard ends are reviewed here, not forwarded to an unknown shop.
+      We quote export buyers who need a factory price and a factory date — not a trading desk that re-routes the order. Typical accounts are OEM builders fitting one panel or skid, contractors mixing tube OD and pipe threads on the same job, and distributors who need factory pricing plus a ship date they can pass to their customer. Mixed ends, private marks and non-catalog shapes are reviewed here; see
+      <a href="/oem/">OEM</a> for what to attach.
     </p>
 
-    <h2>Who we supply</h2>
-    <ul>
-      <li>OEM builders who need fittings and valves for one panel or skid</li>
-      <li>Contractors mixing tube ends and pipe threads on the same job</li>
-      <li>Distributors who want factory pricing and a date they can tell their customer</li>
-    </ul>
-
-    <h2>How an order starts</h2>
+    <h2>Where we are</h2>
     <p>
-      There is no cart. Send tube OD or thread size, material and quantity through
-      <a href="/contact/">Contact</a>. We reply with price and timing. Payment is usually T/T with about 30% down, or L/C at sight. Read
+      {SITE.address}. Export RFQs go to
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      Stocked and make-to-order lots leave from this plant after you confirm the quotation. Default Incoterms are FOB Shanghai or FOB Ningbo.
+    </p>
+
+    <h2>How to order</h2>
+    <p>
+      There is no cart. Send tube OD or thread size, material grade and quantity through
+      <a href="/contact/">Contact</a>. We reply with price and timing. Stocked catalog sizes are typically ready in 5–7 days after confirmation; make-to-order production is about 15–25 days, then freight. Payment is usually T/T with about 30% down and the balance before shipment; L/C at sight is available on larger orders. Read
       <a href="/delivery/">delivery</a>, <a href="/quality/">quality</a> and <a href="/oem/">OEM</a> before you send a large BOM.
     </p>
   </SupportPage>

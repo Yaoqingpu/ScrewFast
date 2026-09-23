@@ -1,7 +1,7 @@
 ﻿---
 title: 'Push-to-Connect Straight Fitting'
 description: 'Push-to-Connect Straight Fitting: stainless push-in tube fitting for air/water. SS304/316. FerruleX RFQ. Stocked sizes ship fast. Export RFQ only — no cart.'
-category: 'tube-fittings'
+category: 'push-to-connect'
 slug: 'push-to-connect-straight-fitting'
 main:
   id: 74

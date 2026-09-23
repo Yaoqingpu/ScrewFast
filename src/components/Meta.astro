@@ -76,6 +76,21 @@ const appleTouchIcon = await getImage({
     url: SITE.url,
     logo: Astro.url.origin + appleTouchIcon.src,
     description: SITE.description_short,
+    email: SITE.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: SITE.addressParts.street,
+      addressLocality: SITE.addressParts.locality,
+      addressRegion: SITE.addressParts.region,
+      addressCountry: SITE.addressParts.country,
+    },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      email: SITE.email,
+      availableLanguage: ['English', 'Chinese'],
+      areaServed: 'Worldwide',
+    },
   })}
 ></script>
 {/* Define the character set, description, author, and viewport settings */}

@@ -23,7 +23,7 @@ Buyers searching **tube fitting types** usually need a map of stainless options 
 4. **Threaded adapters & plugs** — NPT / G / metric pipe ports.  
 5. **Weld connectors** — permanent joins on process tube or pipe.  
 
-Browse [tube fittings](/products/tube-fittings/), [compression fittings](/products/compression-fittings/) and [pipe fittings & plugs](/products/pipe-fittings/).
+Browse [quick-screw fittings](/products/quick-screw-fittings/), [compression fittings](/products/compression-fittings/), [push-to-connect](/products/push-to-connect/), [plugs & barbs](/products/plugs-and-barbs/) and [adapters & weld](/products/adapters-and-weld/).
 
 ## How to choose quickly
 

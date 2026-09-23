@@ -4,14 +4,14 @@ import MainSection from '@components/ui/blocks/MainSection.astro';
 import LeftSection from '@components/ui/blocks/LeftSection.astro';
 import RightSection from '@components/ui/blocks/RightSection.astro';
 import FeaturesStats from '@components/sections/features/FeaturesStats.astro';
-import blueprints from '@images/apps/features-piping.jpg';
-import personWorking from '@images/apps/services-quote.jpg';
-import beforeAfter from '@images/apps/app-instrument.jpg';
-import constructionWorkers from '@images/apps/services-oem.jpg';
-import aerialView from '@images/apps/app-pipes.jpg';
-import usingTools from '@images/apps/app-lab.jpg';
-import progressBuilding from '@images/apps/app-refinery.jpg';
-import underConstruction from '@images/apps/app-marine.jpg';
+import catalogOverview from '@images/apps/features-piping.jpg';
+import corrugatedHose from '@images/apps/services-quote.jpg';
+import compressionConnector from '@images/apps/app-instrument.jpg';
+import compressionElbow from '@images/apps/services-oem.jpg';
+import baTube from '@images/apps/app-pipes.jpg';
+import ballValve from '@images/apps/app-lab.jpg';
+import castStraight from '@images/apps/app-refinery.jpg';
+import castValve from '@images/apps/app-marine.jpg';
 import { SITE } from '@data/constants';
 
 interface Article {
@@ -37,18 +37,18 @@ const articles: Article[] = [
     subTitle:
       'Not sure whether you need stainless steel compression fittings, a ball valve or a needle valve? Share your tube OD, thread standard (NPT / G / metric), media and pressure. Our factory maps the catalog to your drawing and recommends SS304 or SS316 before you order.',
     single: false,
-    imgOne: blueprints,
-    imgOneAlt: 'RFQ planning for stainless steel fittings export',
-    imgTwo: personWorking,
-    imgTwoAlt: 'Engineer reviewing instrumentation fitting applications',
+    imgOne: catalogOverview,
+    imgOneAlt: 'Stainless steel fittings and tube — catalog overview spread for RFQ planning',
+    imgTwo: corrugatedHose,
+    imgTwoAlt: 'Corrugated stainless hose with male and female thread — catalog sample',
   },
   {
     isRightSection: false,
     title: 'OEM and project quoting',
     subTitle:
       'As a factory we quote fittings and valves for OEM panels and plant work. Send the size list or the BOM. The reply states quantity, days and packing. Stocked sizes can move while a custom line is still in the shop.',
-    img: beforeAfter,
-    imgAlt: 'Process plant application for FerruleX stainless fittings',
+    img: compressionConnector,
+    imgAlt: 'Compression tube-to-male connector — catalog sample for OEM RFQs',
     btnExists: true,
     btnTitle: 'Request a Quote',
     btnURL: '/contact/',
@@ -59,18 +59,18 @@ const articles: Article[] = [
     subTitle:
       'Need metric compression fittings on one end and NPT on the other? Or SS316 for corrosive media and SS304 for utility air? We combine compression, threaded, weld and quick-screw series in-house so your manifold stays consistent.',
     single: false,
-    imgOne: constructionWorkers,
-    imgOneAlt: 'OEM factory using stainless tube fittings',
-    imgTwo: aerialView,
-    imgTwoAlt: 'Polished stainless steel tubes',
+    imgOne: compressionElbow,
+    imgOneAlt: 'Compression male elbow connector — catalog sample',
+    imgTwo: baTube,
+    imgTwoAlt: 'Precision-machined stainless fittings — custom CNC parts',
   },
   {
     isRightSection: false,
     title: 'After-sales documentation',
     subTitle:
       'On request we support material notes, packing lists and shipment photos for overseas buyers. Ask for certificates when you submit the RFQ so our factory can prepare the file set with your order.',
-    img: usingTools,
-    imgAlt: 'Stainless steel piping in a process plant',
+    img: ballValve,
+    imgAlt: 'Female-threaded stainless steel ball valve — catalog sample',
   },
   {
     isRightSection: true,
@@ -78,10 +78,10 @@ const articles: Article[] = [
     subTitle:
       'Catalog sizes cover most instrumentation needs. For non-standard elbows, tees, hose ends or cast bodies, send a drawing. We review manufacturability in-house and return a quotation with lead time.',
     single: false,
-    imgOne: progressBuilding,
-    imgOneAlt: 'OEM engineering for custom stainless fittings',
-    imgTwo: underConstruction,
-    imgTwoAlt: 'Process piping ready for stainless valves and fittings',
+    imgOne: castStraight,
+    imgOneAlt: 'Instrument manifold with stainless fittings and valves — made-to-order assembly',
+    imgTwo: castValve,
+    imgTwoAlt: 'Custom-machined stainless fittings — non-standard production',
     btnExists: true,
     btnTitle: 'Send a drawing',
     btnURL: '/contact/',
@@ -116,7 +116,7 @@ const ogTitle = `Services | ${SITE.title}`;
 >
   <MainSection
     title="Factory services for export buyers"
-    subTitle={`${SITE.title} quotes compression fittings, valves, hose and tube from one plant. You get a price, a lead time and a packing note. There is no checkout.`}
+    subTitle={`${SITE.title} is a Nanjing stainless fittings factory. We quote compression fittings, valves, hose and tube from one plant — price, lead time and packing. There is no checkout.`}
   />
 
   {
@@ -150,9 +150,9 @@ const ogTitle = `Services | ${SITE.title}`;
 
   <FeaturesStats
     title="How factory sourcing works"
-    subTitle="Browse the stainless steel fittings catalog, shortlist SKUs, then send sizes and quantity. We reply with factory price, lead time and packing ? stocked sizes ship fast."
+    subTitle="Browse the stainless steel fittings catalog, shortlist SKUs, then send sizes and quantity. We reply with factory price, lead time and packing — stocked sizes ship fast."
     mainStatTitle="Factory"
-    mainStatSubTitle="direct manufacturing ? not a pure trading desk"
+    mainStatSubTitle="direct manufacturing — not a pure trading desk"
     stats={[
       { stat: 'Fast delivery', description: 'stocked SS304 / SS316 sizes ship quickly after confirmation' },
       { stat: 'OEM ready', description: 'mixed threads, custom ends and non-standard machining in-house' },

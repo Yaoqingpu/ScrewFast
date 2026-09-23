@@ -1,7 +1,7 @@
 ---
 title: 'Compression Plug Kit (3-Piece)'
 description: 'Compression Plug Kit (3-Piece): blank unused stainless steel compression fittings ports. FerruleX factory RFQ. Stocked sizes ship fast. Fast stock shipping.'
-category: 'compression-fittings'
+category: 'plugs-and-barbs'
 slug: 'compression-plug-kit-3-piece'
 main:
   id: 35
