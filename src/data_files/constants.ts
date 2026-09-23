@@ -10,6 +10,10 @@ export const SITE = {
   url: 'https://ferrulex.com',
   author: 'FerruleX',
   email: 'sales@ferrulex.com',
+  /** E.164 without + for wa.me; display uses phoneDisplay */
+  phone: '+8613814034409',
+  phoneDisplay: '+86 138 1403 4409',
+  whatsappUrl: 'https://wa.me/8613814034409',
   /** Public factory / courier address */
   address: 'No. 212, Lantian Road, Lukou District, Jiangning, Nanjing, China',
   addressParts: {
