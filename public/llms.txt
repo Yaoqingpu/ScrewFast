@@ -1,0 +1,42 @@
+# FerruleX — Stainless Steel Fittings & Valves Factory
+
+> FerruleX is a manufacturing factory in Nanjing, China, supplying stainless steel (SS304 / SS316 / SS316L) compression fittings, ball valves, needle valves, check valves, corrugated hose, quick-screw and push-to-connect fittings, adapters, plugs, instrumentation tube and investment-cast parts. This is an RFQ catalog site: no shopping cart — buyers send a size list and receive a factory quotation with price, lead time and export packing. Stocked sizes ship in 5–7 days; made-to-order runs 15–25 days. Payment: T/T (~30% deposit) or L/C at sight; FOB Shanghai or Ningbo.
+
+## Products
+
+- [Stainless steel fittings catalog](https://ferrulex.com/products/): All product categories with per-category buying notes.
+- [Corrugated stainless steel hose](https://ferrulex.com/products/corrugated-hose/): Flexible corrugated hose and expansion joints, male/female thread, flange, tri-clamp, quick coupling, KF. SS304 / SS316, Φ6–Φ100.
+- [Stainless steel compression fittings](https://ferrulex.com/products/compression-fittings/): Double-ferrule connectors, elbows, tees, unions, bulkheads. Metric and inch tube; NPT, G, BSPT and metric threads.
+- [Stainless steel quick-screw fittings](https://ferrulex.com/products/quick-screw-fittings/): Nut-and-ferrule bite fittings for air and light-fluid panels.
+- [Stainless steel plugs, caps & barb fittings](https://ferrulex.com/products/plugs-and-barbs/): Hex/flanged/square plugs, compression plug kits, ferrules, barb hose connectors, silencers.
+- [Stainless steel adapters & weld fittings](https://ferrulex.com/products/adapters-and-weld/): Male-female adapters, elbows, tees, weld straight connectors for mixed-thread manifolds.
+- [Stainless steel ball valves](https://ferrulex.com/products/ball-valves/): Straight, angle, 3-way, mini and high-pressure ball valves plus valve manifolds. Compression, female thread or weld ends.
+- [Stainless steel needle & globe valves](https://ferrulex.com/products/needle-valves/): Metering, sampling and gauge isolation valves.
+- [Stainless steel check valves](https://ferrulex.com/products/check-valves/): One-way valves (compression, female thread, split-body) plus inline filters.
+- [Stainless steel BA tube & clamps](https://ferrulex.com/products/instrumentation-tubing/): BA tube, precision tube, coil tube and tube clamps.
+- [Stainless steel push-to-connect fittings](https://ferrulex.com/products/push-to-connect/): Push-in straight, elbow, union and bulkhead fittings for pneumatic lines.
+- [Investment cast stainless fittings](https://ferrulex.com/products/cast-fittings/): Cast elbows, tees, straights, unions, caps and cast ball valves.
+- [Custom & non-standard fittings](https://ferrulex.com/products/custom-fittings/): Factory custom parts from drawings or photos.
+
+## Buying information
+
+- [How to order / RFQ](https://ferrulex.com/contact/): Send product type, tube OD or thread size, material grade, quantity and destination; the factory replies with a quotation.
+- [2-piece ball valve guide](https://ferrulex.com/2-piece-ball-valve/): Size chart, materials and ordering notes for the PN16 threaded ball valve series (1/8"–4").
+- [Delivery & lead times](https://ferrulex.com/delivery/): Stock 5–7 days, made-to-order 15–25 days, packing and Incoterms.
+- [Quality & certificates](https://ferrulex.com/quality/): Material documentation and inspection support on request.
+- [OEM & custom work](https://ferrulex.com/oem/): Private marking, drawings and non-standard parts reviewed in-house.
+
+## Company
+
+- [About FerruleX](https://ferrulex.com/about/): Factory background, location and capabilities.
+- [Applications](https://ferrulex.com/applications/): Industries served.
+- [Services](https://ferrulex.com/services/): What the factory offers besides the catalog.
+- [FAQ](https://ferrulex.com/faq/): Factory vs trader, delivery, threads, RFQ content, certificates.
+- [Technical blog](https://ferrulex.com/blog/): Sizing and selection articles for stainless fittings and valves.
+
+## Contact
+
+- Email: sales@ferrulex.com
+- Phone / WhatsApp: +86 138 1403 4409
+- Address: No. 212, Lantian Road, Lukou District, Jiangning, Nanjing, China
+- Default Incoterms: FOB Shanghai or FOB Ningbo

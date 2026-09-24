@@ -3,12 +3,20 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import ProductDetail from '@components/sections/products/ProductDetail.astro';
 import CategoryListing from '@components/sections/products/CategoryListing.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
 import { SITE } from '@data/constants';
-import { PRODUCT_CATEGORIES, getCategory, productPath } from '@data/categories';
+import {
+  PRODUCT_CATEGORIES,
+  getCategory,
+  categoryPath,
+  productPath,
+} from '@data/categories';
 import { isEnContent } from '@utils/contentLocale';
 
 export async function getStaticPaths() {
-  const productEntries = await getCollection('products', ({ id }) => isEnContent(id));
+  const productEntries = await getCollection('products', ({ id }) =>
+    isEnContent(id)
+  );
   return [
     ...PRODUCT_CATEGORIES.map(category => ({
       params: { slug: category.slug },
@@ -27,7 +35,8 @@ interface Props {
 }
 
 const { kind, product } = Astro.props;
-const category = kind === 'category' ? getCategory(Astro.params.slug!) : undefined;
+const category =
+  kind === 'category' ? getCategory(Astro.params.slug!) : undefined;
 
 const related =
   kind === 'product' && product
@@ -43,34 +52,94 @@ const related =
         .sort((a, b) => a.data.main.id - b.data.main.id)
         .slice(0, 4)
     : [];
+
+const productImage =
+  kind === 'product' && product
+    ? await getImage({
+        src: product.data.main.imgMain,
+        width: 480,
+        format: 'avif',
+      })
+    : null;
+
+const productStructuredData =
+  kind === 'product' && product
+    ? (() => {
+        const productUrl = `${SITE.url}${productPath(product.data.category, product.data.slug)}`;
+        const productCategory = getCategory(product.data.category);
+        return [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Product',
+            '@id': productUrl,
+            url: productUrl,
+            name: product.data.title,
+            description: product.data.description,
+            sku: `FX-${String(product.data.main.id).padStart(3, '0')}`,
+            brand: {
+              '@type': 'Brand',
+              name: SITE.title,
+            },
+            category: productCategory?.title,
+            image: productImage
+              ? new URL(productImage.src, SITE.url).href
+              : undefined,
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Home',
+                item: `${SITE.url}/`,
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Products',
+                item: `${SITE.url}/products/`,
+              },
+              ...(productCategory
+                ? [
+                    {
+                      '@type': 'ListItem',
+                      position: 3,
+                      name: productCategory.shortTitle,
+                      item: `${SITE.url}${categoryPath(productCategory.slug)}`,
+                    },
+                    {
+                      '@type': 'ListItem',
+                      position: 4,
+                      name: product.data.title,
+                      item: productUrl,
+                    },
+                  ]
+                : [
+                    {
+                      '@type': 'ListItem',
+                      position: 3,
+                      name: product.data.title,
+                      item: productUrl,
+                    },
+                  ]),
+            ],
+          },
+        ];
+      })()
+    : null;
 ---
 
-{
-  kind === 'category' && category && <CategoryListing category={category} />
-}
+{kind === 'category' && category && <CategoryListing category={category} />}
 
-{
-  kind === 'product' && product && (
-    <MainLayout
-      title={`${product.data.title} | ${SITE.title}`}
-      customDescription={product.data.description}
-      customOgTitle={`${product.data.title} | ${SITE.title}`}
-      structuredData={{
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        '@id': `${SITE.url}${productPath(product.data.category, product.data.slug)}`,
-        url: `${SITE.url}${productPath(product.data.category, product.data.slug)}`,
-        name: product.data.title,
-        description: product.data.description,
-        sku: `FX-${String(product.data.main.id).padStart(3, '0')}`,
-        brand: {
-          '@type': 'Brand',
-          name: SITE.title,
-        },
-        category: getCategory(product.data.category)?.title,
-      }}
-    >
-      <ProductDetail product={product} related={related} />
-    </MainLayout>
-  )
-}
+{kind === 'product' && product && productStructuredData && (
+  <MainLayout
+    title={`${product.data.title} | ${SITE.title}`}
+    customDescription={product.data.description}
+    customOgTitle={`${product.data.title} | ${SITE.title}`}
+    structuredData={productStructuredData}
+  >
+    <ProductDetail product={product} related={related} />
+  </MainLayout>
+)}

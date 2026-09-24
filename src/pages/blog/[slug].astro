@@ -1,4 +1,4 @@
-﻿---
+---
 import MainLayout from '@/layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
 import { formatDate } from '@utils/utils';
@@ -13,10 +13,6 @@ import {
 } from '@data/blog_categories';
 import { isEnContent } from '@utils/contentLocale';
 import AuthBtn from '@components/ui/buttons/AuthBtn.astro';
-import TextInput from '@components/ui/forms/input/TextInput.astro';
-import EmailContactInput from '@components/ui/forms/input/EmailContactInput.astro';
-import PhoneInput from '@components/ui/forms/input/PhoneInput.astro';
-import TextAreaInput from '@components/ui/forms/input/TextAreaInput.astro';
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog', ({ id, filePath }) =>
@@ -259,42 +255,79 @@ const relatedPosts =
             </p>
             <form
               class="mt-4"
-              action={import.meta.env.PUBLIC_FORM_ENDPOINT || '/contact/'}
+              action="/api/contact/"
               method="POST"
-              data-demo-form={
-                !import.meta.env.PUBLIC_FORM_ENDPOINT || undefined
-              }
-              data-demo-message={
-                !import.meta.env.PUBLIC_FORM_ENDPOINT
-                  ? 'Thanks. This form is not connected to the inbox yet. Email the same details to sales@ferrulex.com for a reply now.'
-                  : undefined
-              }
+              data-rfq-form
             >
+              <input
+                type="text"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                class="hidden"
+              />
               <div class="grid gap-3">
-                <TextInput
-                  id="blog-rfq-firstname"
-                  label="First Name"
-                  name="hs-firstname-contacts"
-                />
-                <TextInput
-                  id="blog-rfq-lastname"
-                  label="Last Name"
-                  name="hs-lastname-contacts"
-                />
-                <EmailContactInput id="blog-rfq-email" />
-                <PhoneInput id="blog-rfq-phone" />
-                <TextAreaInput
-                  id="blog-rfq-details"
-                  label="Size, material, quantity, notes"
-                  name="hs-about-contacts"
-                />
+                <div>
+                  <label
+                    for="blog-rfq-name"
+                    class="mb-1 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+                  >
+                    Name <span class="text-blue-600 dark:text-blue-400">*</span>
+                  </label>
+                  <input
+                    id="blog-rfq-name"
+                    name="name"
+                    type="text"
+                    required
+                    autocomplete="name"
+                    placeholder="Your name"
+                    class="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder:text-neutral-500"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="blog-rfq-email"
+                    class="mb-1 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+                  >
+                    Work Email{' '}
+                    <span class="text-blue-600 dark:text-blue-400">*</span>
+                  </label>
+                  <input
+                    id="blog-rfq-email"
+                    name="email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                    placeholder="you@company.com"
+                    class="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder:text-neutral-500"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="blog-rfq-message"
+                    class="mb-1 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+                  >
+                    Size, material, quantity{' '}
+                    <span class="text-blue-600 dark:text-blue-400">*</span>
+                  </label>
+                  <textarea
+                    id="blog-rfq-message"
+                    name="message"
+                    rows="4"
+                    required
+                    placeholder="One line per item is enough"
+                    class="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder:text-neutral-500"
+                  ></textarea>
+                </div>
               </div>
               <div class="mt-4">
                 <AuthBtn title="Submit RFQ" />
               </div>
               <p
                 class="mt-2 hidden text-sm text-blue-600 dark:text-blue-400"
-                data-demo-status
+                data-form-status
+                data-success-message="Thanks — your RFQ is in the inbox. We reply in 1–2 business days."
                 aria-live="polite"
               ></p>
             </form>

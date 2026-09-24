@@ -27,21 +27,47 @@ const metaDescription = category.description;
   title={pageTitle}
   customDescription={metaDescription}
   customOgTitle={pageTitle}
-  structuredData={{
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${SITE.url}${categoryPath(category.slug)}`,
-    url: `${SITE.url}${categoryPath(category.slug)}`,
-    name: pageTitle,
-    description: metaDescription,
-    isPartOf: {
-      '@type': 'WebSite',
-      url: SITE.url,
-      name: SITE.title,
-      description: SITE.description_short,
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${SITE.url}${categoryPath(category.slug)}`,
+      url: `${SITE.url}${categoryPath(category.slug)}`,
+      name: pageTitle,
+      description: metaDescription,
+      isPartOf: {
+        '@type': 'WebSite',
+        url: SITE.url,
+        name: SITE.title,
+        description: SITE.description_short,
+      },
+      inLanguage: 'en-US',
     },
-    inLanguage: 'en-US',
-  }}
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE.url}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Products',
+          item: `${SITE.url}/products/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: category.shortTitle,
+          item: `${SITE.url}${categoryPath(category.slug)}`,
+        },
+      ],
+    },
+  ]}
 >
   <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
     <nav class="mb-6 text-sm text-neutral-500 dark:text-neutral-400">

@@ -1,27 +1,24 @@
-﻿---
+---
 import AuthBtn from '@components/ui/buttons/AuthBtn.astro';
 import ContactIconBlock from '@components/ui/blocks/ContactIconBlock.astro';
-import TextInput from '@components/ui/forms/input/TextInput.astro';
-import EmailContactInput from '@components/ui/forms/input/EmailContactInput.astro';
-import PhoneInput from '@components/ui/forms/input/PhoneInput.astro';
-import TextAreaInput from '@components/ui/forms/input/TextAreaInput.astro';
 import Icon from '@components/ui/icons/Icon.astro';
 import { SITE } from '@data/constants';
 
 const copy = {
-  formEndpoint: import.meta.env.PUBLIC_FORM_ENDPOINT || '',
   title: 'Request a Quote (RFQ)',
   subTitle:
     'Paste your size list — tube OD or thread, grade, quantity, destination port. A factory quote comes back in 1–2 business days: price, ship date, packing. No account, no charge, no obligation.',
   formTitle: 'RFQ form',
   formSubTitle:
     'One line per item is enough: size, material, quantity, port. Attach a drawing when the two ends differ.',
-  firstName: 'First Name',
-  lastName: 'Last Name',
-  details: 'Size, material, quantity, destination, notes',
+  name: 'Name',
+  email: 'Work Email',
+  company: 'Company',
+  topic: 'Topic',
+  message: 'Size list / Message',
   send: 'Submit RFQ',
-  demoMessage:
-    `Thanks. This form is not connected yet — email ${SITE.email} and we reply to RFQs sent through the email form.`,
+  successMessage:
+    'Thanks — your RFQ is in the inbox. We reply in 1–2 business days.',
   catalogHeading: 'Product catalog',
   catalogContent:
     '105 stocked-and-quoted lines: compression fittings, ball valves, needle valves, corrugated hose.',
@@ -57,32 +54,113 @@ const copy = {
         <h2 class="mb-8 text-xl font-bold text-neutral-700 dark:text-neutral-300">
           {copy.formTitle}
         </h2>
-        <form
-          action={copy.formEndpoint || '/contact/'}
-          method="POST"
-          data-demo-form={!copy.formEndpoint || undefined}
-          data-demo-message={!copy.formEndpoint ? copy.demoMessage : undefined}
-        >
+        <form action="/api/contact/" method="POST" data-rfq-form>
+          {/* Honeypot — invisible to visitors, catches bots */}
+          <input
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="hidden"
+          />
           <div class="grid gap-4">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <TextInput
-                id="hs-firstname-contacts"
-                label={copy.firstName}
-                name="hs-firstname-contacts"
-              />
-              <TextInput
-                id="hs-lastname-contacts"
-                label={copy.lastName}
-                name="hs-lastname-contacts"
-              />
+              <div>
+                <label
+                  for="rfq-name"
+                  class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+                >
+                  {copy.name}
+                  <span class="text-blue-600 dark:text-blue-400">*</span>
+                </label>
+                <input
+                  id="rfq-name"
+                  name="name"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="Your name"
+                  class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder:text-neutral-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="rfq-email"
+                  class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+                >
+                  {copy.email}
+                  <span class="text-blue-600 dark:text-blue-400">*</span>
+                </label>
+                <input
+                  id="rfq-email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@company.com"
+                  class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder:text-neutral-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="rfq-company"
+                  class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+                >
+                  {copy.company}
+                </label>
+                <input
+                  id="rfq-company"
+                  name="company"
+                  type="text"
+                  autocomplete="organization"
+                  placeholder="Company name"
+                  class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder:text-neutral-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="rfq-topic"
+                  class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+                >
+                  {copy.topic}
+                </label>
+                <select
+                  id="rfq-topic"
+                  name="topic"
+                  class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200"
+                >
+                  <option value="" disabled selected>
+                    Select…
+                  </option>
+                  <option value="RFQ">Request a quote (RFQ)</option>
+                  <option value="General question">General question</option>
+                  <option value="Order in progress">Order in progress</option>
+                  <option value="OEM / custom parts">OEM / custom parts</option>
+                  <option value="Partnership / supplier inquiry">
+                    Partnership / supplier inquiry
+                  </option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
             </div>
-            <EmailContactInput id="hs-email-contacts" />
-            <PhoneInput id="hs-phone-number" />
-            <TextAreaInput
-              id="hs-about-contacts"
-              label={copy.details}
-              name="hs-about-contacts"
-            />
+            <div>
+              <label
+                for="rfq-message"
+                class="mb-1.5 block text-sm font-semibold text-neutral-800 dark:text-neutral-200"
+              >
+                {copy.message}
+                <span class="text-blue-600 dark:text-blue-400">*</span>
+              </label>
+              <textarea
+                id="rfq-message"
+                name="message"
+                rows="5"
+                required
+                placeholder="Size, material, quantity, destination port — one line per item"
+                class="w-full rounded-lg border border-neutral-300 bg-white px-4 py-2.5 text-sm text-neutral-800 placeholder:text-neutral-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-200 dark:placeholder:text-neutral-500"
+              ></textarea>
+            </div>
           </div>
 
           <div class="mt-4 grid">
@@ -95,7 +173,8 @@ const copy = {
             </p>
             <p
               class="mt-2 hidden text-sm text-blue-600 dark:text-blue-400"
-              data-demo-status
+              data-form-status
+              data-success-message={copy.successMessage}
               aria-live="polite"
             ></p>
           </div>

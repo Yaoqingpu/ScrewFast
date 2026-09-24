@@ -21,6 +21,35 @@ import { SITE } from '@data/constants';
   title="Stainless Steel Fittings & Valves Factory | FerruleX"
   customDescription={SITE.description}
   customOgTitle="Stainless Steel Fittings & Valves Factory | FerruleX"
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      inLanguage: 'en-US',
+      '@id': `${SITE.url}/`,
+      url: SITE.url,
+      name: SITE.title,
+      description: SITE.description,
+      isPartOf: {
+        '@type': 'WebSite',
+        url: SITE.url,
+        name: SITE.title,
+        description: SITE.description,
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': `${SITE.url}/#faq`,
+      url: SITE.url,
+      inLanguage: 'en-US',
+      mainEntity: faqs.faqs.map(f => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    },
+  ]}
 >
   <HeroSection
     title="Stainless steel fittings and valves"
@@ -38,7 +67,6 @@ import { SITE } from '@data/constants';
     src={heroImage}
     alt="Stainless steel ball valve with lever handle, made in the FerruleX factory"
   />
-
 
   <FeaturesGeneral
     title="The order, in four lines"
@@ -150,16 +178,21 @@ import { SITE } from '@data/constants';
       </h2>
       <p class="mt-4 text-pretty text-neutral-600 dark:text-neutral-400">
         Our brand is FerruleX. For many years we have focused on stainless steel
-        compression fittings, ball valves, needle valves, check valves and corrugated
-        hose — plus quick-screw, push-to-connect, adapters, plugs and cast parts.
-        Grades are SS304, SS316 and SS316L. Browse the catalog, send a size list, and
-        get a factory quote. No cart.
+        compression fittings, ball valves, needle valves, check valves and
+        corrugated hose — plus quick-screw, push-to-connect, adapters, plugs and
+        cast parts. Grades are SS304, SS316 and SS316L. Browse the catalog, send
+        a size list, and get a factory quote. No cart.
       </p>
       <p class="mt-3 text-sm text-neutral-500 dark:text-neutral-500">
         {SITE.address}
       </p>
       <p class="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-neutral-600 dark:text-neutral-400">
-        <a class="underline-offset-2 hover:underline" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        <a
+          class="underline-offset-2 hover:underline"
+          href={`mailto:${SITE.email}`}
+        >
+          {SITE.email}
+        </a>
         <a
           class="underline-offset-2 hover:underline"
           href={SITE.whatsappUrl}

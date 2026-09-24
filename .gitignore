@@ -29,3 +29,6 @@ public/tmp-view/
 scripts/__pycache__/
 **/__pycache__/
 *.pyc
+
+# wrangler local dev state
+.wrangler/

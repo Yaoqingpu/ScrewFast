@@ -13,3 +13,6 @@ dist/
 .env
 .env.*
 .DS_Store
+
+# plain-text SEO files (no parser)
+public/llms.txt

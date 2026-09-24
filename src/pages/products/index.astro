@@ -34,21 +34,41 @@ const metaDescription =
   title={pageTitle}
   customDescription={metaDescription}
   customOgTitle={pageTitle}
-  structuredData={{
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${SITE.url}/products/`,
-    url: `${SITE.url}/products/`,
-    name: pageTitle,
-    description: metaDescription,
-    isPartOf: {
-      '@type': 'WebSite',
-      url: SITE.url,
-      name: SITE.title,
-      description: SITE.description_short,
+  structuredData={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      '@id': `${SITE.url}/products/`,
+      url: `${SITE.url}/products/`,
+      name: pageTitle,
+      description: metaDescription,
+      isPartOf: {
+        '@type': 'WebSite',
+        url: SITE.url,
+        name: SITE.title,
+        description: SITE.description_short,
+      },
+      inLanguage: 'en-US',
     },
-    inLanguage: 'en-US',
-  }}
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: `${SITE.url}/`,
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Products',
+          item: `${SITE.url}/products/`,
+        },
+      ],
+    },
+  ]}
 >
   <div class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
     <div class="mb-8 flex flex-col gap-4 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
@@ -57,25 +77,25 @@ const metaDescription =
           Stainless steel fittings catalog
         </h1>
         <p class="mt-3 text-pretty text-neutral-600 dark:text-neutral-400">
-          Pick a category, then open a product for material, ends and how to order. Prices stay on the quote. Photos are catalog shots until the final product photos are in.
+          Pick a category, then open a product for material, ends and how to
+          order. Prices stay on the quote. Photos are catalog shots until the
+          final product photos are in.
         </p>
       </div>
       <PrimaryCTA title="Request a Quote" url="/contact/" noArrow={true} />
     </div>
 
     <section class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {
-        categories.map(cat => (
-          <CategoryCard
-            href={categoryPath(cat.slug)}
-            title={cat.shortTitle}
-            description={cat.description}
-            count={cat.count}
-            image={cat.image}
-            imageAlt={cat.imageAlt}
-          />
-        ))
-      }
+      {categories.map(cat => (
+        <CategoryCard
+          href={categoryPath(cat.slug)}
+          title={cat.shortTitle}
+          description={cat.description}
+          count={cat.count}
+          image={cat.image}
+          imageAlt={cat.imageAlt}
+        />
+      ))}
     </section>
   </div>
 </MainLayout>

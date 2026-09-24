@@ -3,17 +3,17 @@ const {
   label = 'Email',
   title = 'Subscribe',
   id = 'footer-input',
+  successMessage = 'Thanks — you are on the list.',
 } = Astro.props;
 
 interface Props {
   label?: string;
   title?: string;
   id?: string;
+  successMessage?: string;
 }
 
 const placeholder = 'Enter your email';
-const successMessage =
-  'Thanks! (Demo only - wire an email service to collect real subscribers.)';
 ---
 
 <div class="mt-4 flex flex-col items-center gap-2 rounded-xl bg-neutral-800 p-2 ring-1 ring-neutral-700 sm:flex-row sm:gap-3">
@@ -40,7 +40,7 @@ const successMessage =
 </div>
 <p
   class="mt-2 hidden text-sm text-neutral-400"
-  data-demo-status
+  data-form-status
   aria-live="polite"
   data-success-message={successMessage}
 ></p>
