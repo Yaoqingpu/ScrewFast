@@ -1,0 +1,98 @@
+---
+// Cookie consent banner. Choice is stored in localStorage ('fx_cookie_consent')
+// and synced with GA4 Consent Mode via window.gtag when Google Analytics is active.
+// window.FXCookieConsent.reset() reopens the banner (used by the footer link).
+---
+
+<div
+  id="fx-cookie-banner"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-100 p-4 sm:p-6"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Cookie consent"
+>
+  <div class="mx-auto flex max-w-3xl flex-col gap-4 rounded-2xl border border-neutral-200 bg-white p-5 shadow-2xl sm:flex-row sm:items-center dark:border-neutral-700 dark:bg-neutral-900">
+    <p class="grow text-sm text-neutral-600 dark:text-neutral-300">
+      We use cookies to analyze site traffic and improve your experience. See
+      our
+      <a
+        href="/privacy/"
+        class="font-medium text-blue-600 underline hover:text-blue-500 dark:text-blue-400"
+      >
+        Privacy Policy
+      </a>
+      .
+    </p>
+    <div class="flex shrink-0 items-center gap-3">
+      <button
+        type="button"
+        data-cookie-decline
+        class="rounded-lg px-4 py-2 text-sm font-medium text-neutral-600 ring-neutral-400 transition hover:text-neutral-900 focus-visible:ring-3 dark:text-neutral-300 dark:hover:text-white"
+      >
+        Decline
+      </button>
+      <button
+        type="button"
+        data-cookie-accept
+        class="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-blue-500 focus-visible:ring-3 focus-visible:ring-blue-400"
+      >
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = 'fx_cookie_consent';
+    var banner = document.getElementById('fx-cookie-banner');
+    if (!banner) return;
+
+    function syncConsent(accepted) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('consent', 'update', {
+          analytics_storage: accepted ? 'granted' : 'denied',
+        });
+      }
+    }
+
+    function setChoice(choice) {
+      try {
+        localStorage.setItem(KEY, choice);
+      } catch (e) {}
+      syncConsent(choice === 'accepted');
+      banner.setAttribute('hidden', '');
+    }
+
+    var accept = banner.querySelector('[data-cookie-accept]');
+    var decline = banner.querySelector('[data-cookie-decline]');
+    accept.addEventListener('click', function () {
+      setChoice('accepted');
+    });
+    decline.addEventListener('click', function () {
+      setChoice('declined');
+    });
+
+    var choice = null;
+    try {
+      choice = localStorage.getItem(KEY);
+    } catch (e) {}
+
+    if (choice === 'accepted' || choice === 'declined') {
+      syncConsent(choice === 'accepted');
+    } else {
+      banner.removeAttribute('hidden');
+    }
+
+    window.FXCookieConsent = {
+      reset: function () {
+        try {
+          localStorage.removeItem(KEY);
+        } catch (e) {}
+        syncConsent(false);
+        banner.removeAttribute('hidden');
+      },
+    };
+  })();
+</script>
