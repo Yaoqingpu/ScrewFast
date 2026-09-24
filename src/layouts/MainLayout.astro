@@ -5,6 +5,7 @@ import Navbar from '@components/sections/navbar&footer/Navbar.astro';
 import FooterSection from '@components/sections/navbar&footer/FooterSection.astro';
 import CookieBanner from '@components/CookieBanner.astro';
 import { SITE } from '@data/constants';
+import type { ImageMetadata } from 'astro';
 import '@styles/global.css';
 
 // Setting expected props
@@ -15,6 +16,7 @@ const {
   lang = 'en',
   customDescription = null,
   customOgTitle = null,
+  customOgImage = null,
   hideFooter = false,
 } = Astro.props;
 
@@ -28,6 +30,7 @@ interface Props {
   lang?: string;
   customDescription?: string | null;
   customOgTitle?: string | null;
+  customOgImage?: ImageMetadata | null;
   hideFooter?: boolean;
 }
 ---
@@ -61,6 +64,7 @@ interface Props {
       structuredData={structuredData}
       customDescription={customDescription}
       customOgTitle={customOgTitle}
+      customOgImage={customOgImage}
     />
     {/* Define the title of the page */}
     <title>{title}</title>

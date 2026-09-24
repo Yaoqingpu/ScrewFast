@@ -1,5 +1,6 @@
 ---
 import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { OG, SEO, SITE } from '@data/constants';
 import faviconSvgSrc from '@images/icon.svg';
 import faviconSrc from '@images/icon.png';
@@ -12,6 +13,7 @@ const defaultProps = {
   structuredData: SEO.structuredData,
   customDescription: null,
   customOgTitle: null,
+  customOgImage: null,
 };
 
 // Extract props with default values assigned from defaultProps. Values can be overridden when the component is used.
@@ -22,6 +24,7 @@ const {
   structuredData = defaultProps.structuredData,
   customDescription = defaultProps.customDescription,
   customOgTitle = defaultProps.customOgTitle,
+  customOgImage = defaultProps.customOgImage,
 } = Astro.props;
 
 // Use custom description if provided, otherwise use default meta
@@ -35,12 +38,10 @@ const author = SITE.author;
 const canonical = new URL(Astro.url.pathname, Astro.site || Astro.url.origin)
   .href;
 const socialImageRes = await getImage({
-  src: OG.image,
+  src: customOgImage ?? OG.image,
   width: 1200,
-  height: 600,
 });
 const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
-
 
 // Generate and optimize the favicon images
 const faviconSvg = await getImage({
@@ -104,18 +105,21 @@ const appleTouchIcon = await getImage({
 <link rel="alternate" hreflang="en" href={canonical} />
 
 {/* Facebook Meta Tags */}
-<meta
-  property="og:locale"
-  content='en_US'
-/>
+<meta property="og:locale" content="en_US" />
 <meta property="og:url" content={canonical} />
 <meta property="og:type" content="website" />
 <meta property="og:title" content={ogTitle} />
 <meta property="og:site_name" content={SITE.title} />
 <meta property="og:description" content={ogDescription} />
 <meta property="og:image" content={socialImage} />
-<meta content="1200" property="og:image:width" />
-<meta content="600" property="og:image:height" />
+<meta
+  content={String(socialImageRes.options.width)}
+  property="og:image:width"
+/>
+<meta
+  content={String(socialImageRes.options.height)}
+  property="og:image:height"
+/>
 <meta content="image/png" property="og:image:type" />
 
 {/* Twitter Meta Tags */}
