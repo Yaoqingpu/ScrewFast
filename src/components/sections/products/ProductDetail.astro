@@ -8,7 +8,6 @@ import { getCategory, categoryPath } from '@data/categories';
 interface Props {
   product: CollectionEntry<'products'>;
   related?: CollectionEntry<'products'>[];
-  lang?: 'en' | 'fr';
 }
 
 const { product, related = [] } = Astro.props;
