@@ -4,6 +4,13 @@
 # and Keywords Everywhere PASF/related (2026-09-24 session).
 # Updated: 2026-09-24
 
+> **Execution status (2026-09-25):** All 27 planned topics are drafted —
+> post-1…17 (Phases 1–2 + expansions, audited) and post-18…36 (Phases 3–7,
+> written 2026-09-25). 36 posts total, all verified: ≥850 words, takeaways
+> box, ≥1 table, FAQ ×5, FAQPage schema 36/36, 65/65 internal links resolve,
+> build clean. pubDates scheduled to 2026-11-30 at ~2/week. Uncommitted —
+> awaiting user review. Phase handoff files: PHASE3…8_*.md at repo root.
+
 ## Ground rules (apply to every post)
 
 1. One primary keyword per post; once in H1 + first ~40 words.
@@ -15,7 +22,7 @@
    (Swagelok/Parker may appear in body copy for comparison only).
 7. Avoid "near me" / retailer-intent keywords (Home Depot, Lowe's, IndiaMART).
 
-## Already published (9 posts, do not duplicate)
+## Already published (17 posts, do not duplicate)
 
 - SS304 vs SS316 for Stainless Steel Fittings
 - NPT vs G (BSP) Threads on Stainless Fittings
@@ -26,6 +33,14 @@
 - Types of Stainless Steel Tube Fittings
 - Needle Valve vs Ball Valve: Which Stainless Valve to Spec
 - Check Valve vs Ball Valve on Stainless Lines
+- Single Ferrule vs Double Ferrule Fittings
+- Can You Use Stainless Compression Fittings on Copper or Plastic Tubing?
+- How Do Push-to-Connect Fittings Work (and Are They Reliable?)
+- What Are Tri-Clamp Fittings and How Are They Measured?
+- 1-Piece vs 2-Piece vs 3-Piece Ball Valve: Which to Spec
+- Ball Valve Ratings Explained: 1000 WOG vs 2000/3000 PSI
+- Full Port vs Reduced Port Ball Valves
+- 3-Way Ball Valves: L-Port vs T-Port, How They Work
 
 ## Publishing order — 27 topics, 8 clusters
 
@@ -94,6 +109,26 @@ covers ~3 months; adjust pace freely.
 | 25 | How to Write an RFQ for Stainless Fittings That Gets a Fast Factory Quote | long-tail buyer intent | /contact/ + /delivery/ |
 | 26 | FOB vs CIF vs EXW: Shipping Terms for Importing Fittings from China | import buyer intent | /delivery/ |
 | 27 | HS Codes for Stainless Steel Fittings and Valves | "hs code" appears across all autocomplete sets | /downloads/ + products hub |
+
+## Phase 8 — thin-post expansion (backlog)
+
+The 9 posts published before post-10 run ~120–170 words each — too thin to
+compete for their head terms. Expansion candidates to ~900 words each, using
+the same structure as post-10…17 (key-takeaways box, comparison section,
+honest limitations, FAQ section, RFQ CTA). Backlog only — do not expand yet;
+revisit after Phases 1–7 ship.
+
+| # | Short post | Cluster |
+|---|------------|---------|
+| 1 | SS304 vs SS316 for Stainless Steel Fittings | materials |
+| 2 | NPT vs G (BSP) Threads on Stainless Fittings | threads & standards |
+| 3 | How Our Stainless Fittings Factory Ships Faster | factory / logistics |
+| 4 | What Is a Compression Fitting? | installation guides |
+| 5 | How to Install Stainless Steel Compression Fittings | installation guides |
+| 6 | What Is a Ferrule Fitting? | installation guides |
+| 7 | Types of Stainless Steel Tube Fittings | installation guides |
+| 8 | Needle Valve vs Ball Valve: Which Stainless Valve to Spec | valves |
+| 9 | Check Valve vs Ball Valve on Stainless Lines | valves |
 
 ## Secondary keyword pool (use in body / H2, per KEYWORDS.md)
 
