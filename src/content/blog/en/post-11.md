@@ -9,16 +9,22 @@ authorImageAlt: 'FerruleX author'
 pubDate: 2026-09-25
 cardImage: '@/images/products/p03-07-compression-tube-to-male-connector.jpg'
 cardImageAlt: 'Stainless compression fitting on soft tubing with support insert'
-readTime: 9
+readTime: 4
 tags:
   ['compression fittings', 'copper tubing', 'plastic tubing', 'tube inserts']
 ---
 
 Sometimes — but "stainless fitting" alone is not a compatibility guarantee. Whether a stainless **compression fitting** holds on copper or plastic tube depends on three things: ferrule material, tube hardness, and usually a **support insert**. Get any one of the three wrong and the joint leaks, creeps, or pulls out months after installation.
 
+> **Key takeaways**
+>
+> - A ferrule must be harder than the tube it bites, which is why fitting makers recommend brass ferrules — not stainless — on soft copper tube.
+> - Plastic tubing such as nylon, PE, PP, PTFE and vinyl needs a metal fitting series approved for that tube plus a support insert sized by both OD and ID, or the joint creeps, weeps or pulls out under load.
+> - The working pressure limit of a stainless fitting on any tube belongs to the complete assembly — fitting, ferrule, insert, tube, fluid and temperature — so the lowest-rated component sets the limit.
+
 ## The basic rule: match materials, with exceptions
 
-Fitting makers' default guidance is to use like materials — stainless ferrules on stainless tube, brass on copper, plastic on plastic. The reason is mechanical: the ferrule must be harder than the tube so it can swage and lock. A brass ferrule on stainless tube never gets its full bite; a hard stainless ferrule on soft tube bites too aggressively.
+Fitting makers' default guidance is to use like materials — stainless ferrules on stainless tube, brass on copper, plastic on plastic. The reason is mechanical: the ferrule must be harder than the tube so it can swage and lock (the fitting family covered by [ISO 8434-1](https://www.iso.org/standard/62079.html) metallic tube connections). A brass ferrule on stainless tube never gets its full bite; a hard stainless ferrule on soft tube bites too aggressively.
 
 The exceptions matter too. On **copper tube**, brass ferrules are the recommendation precisely because brass is a copper-zinc alloy — functionally a like material that grips without galling. And sometimes you deliberately _want_ a soft ferrule: a Teflon front ferrule with a nylon back ferrule lets you seal around a thermocouple probe or glass tube without locking it in place or fracturing it.
 

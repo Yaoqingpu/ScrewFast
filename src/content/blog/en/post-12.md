@@ -9,12 +9,18 @@ authorImageAlt: 'FerruleX author'
 pubDate: 2026-09-26
 cardImage: '@/images/products/p12-74-ss-fitting.jpg'
 cardImageAlt: 'Stainless push-to-connect fitting on pneumatic tubing'
-readTime: 9
+readTime: 5
 tags:
   ['push to connect', 'pneumatic fittings', 'tube fittings', 'quick connect']
 ---
 
 **Push-to-connect fittings** are reliable for correctly specified pneumatic tubing in ordinary stationary service — but they are not magic. The fitting grips with a metal collet and seals with an O-ring, and both only work when the tube matches the series' tolerances and the line is protected from side loads. Understand the mechanism and you will know exactly where the limits are.
+
+> **Key takeaways**
+>
+> - A push-to-connect fitting holds a line with only two working elements — angled collet teeth for grip and an O-ring for seal — so tube OD tolerance, undamaged surface and full insertion depth decide whether it leaks.
+> - Push-to-connect pressure ratings are series-specific, not category-wide: SMC's KQ2 range lists ~1 MPa (145 psi) while Festo's QS line rates −0.95 to +6 bar, and ratings must be verified at the operating temperature, not the 20 °C catalog condition.
+> - For a permanent gas line, rigid metal tube, or any line that will be tugged or worked by vibration, a compression fitting is the more robust joint; push-to-connect earns its place on panels that are assembled and reconfigured often.
 
 ## What is inside the fitting
 
@@ -34,6 +40,15 @@ Push the tube through the collar and into the body. The collet teeth bite the tu
 - **Surface condition:** round, undamaged OD, cut square with a tube cutter — not shears, which oval the end. Scratched or oval tube leaks at the O-ring.
 - **Insertion depth:** push fully home until it seats against the internal stop. Partial insertion is a top cause of first-run leaks.
 - **Material approval:** nylon and polyurethane are the standard pair. Stainless or other rigid tube is compatible **only where the series explicitly lists it** — a collet designed for polymer tube may not bite or seal on hard metal tube at all.
+
+| Reliability factor | What the fitting needs | What goes wrong when it's missing |
+| ------------------ | ---------------------- | --------------------------------- |
+| OD tolerance | Tube matches the series' nominal size (≈±0.1 mm for nylon, +0.15/−0.2 mm for polyurethane) | Collet grips unevenly and the O-ring cannot conform — leaks from day one |
+| Surface condition | Round, undamaged OD, cut square with a tube cutter | An oval or scratched end bypasses the O-ring seal |
+| Insertion depth | Tube pushed fully home against the internal stop | Partial insertion is a top cause of first-run leaks |
+| Tube material approval | The series explicitly lists the tube type — stainless only where stated | A polymer-rated collet may not bite or seal hard metal tube at all |
+| Side loads and vibration | Routing and supports keep bending loads off the joint | Collet and O-ring are worked by tube movement — leaks appear only under vibration |
+| Reuse condition | Cut the tube back past the collet marks before reinsertion | The previously gripped zone is scratched or ovalized and leaks on reassembly |
 
 ## Pressure and temperature
 

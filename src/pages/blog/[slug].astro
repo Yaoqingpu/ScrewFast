@@ -52,6 +52,59 @@ const posts =
 
 const rendered = kind === 'post' && post ? await render(post) : null;
 const Content = rendered?.Content;
+
+// Parse the raw markdown "## FAQ" section into FAQPage JSON-LD.
+// Question lines are wrapped in **...**; the paragraph after each is the answer.
+const faqSchema = (() => {
+  if (kind !== 'post' || !post) return null;
+  const body = post.body ?? '';
+  const heading = body.match(/^## FAQ\s*$/m);
+  if (!heading || heading.index === undefined) return null;
+  const rest = body.slice(heading.index + heading[0].length);
+  const nextHeading = rest.search(/^## /m);
+  const section = nextHeading === -1 ? rest : rest.slice(0, nextHeading);
+
+  const stripMd = (text: string) =>
+    text
+      .replace(/\*\*(.+?)\*\*/g, '$1')
+      .replace(/\[(.+?)\]\([^)]+\)/g, '$1')
+      .trim();
+
+  const pairs: { question: string; answer: string }[] = [];
+  let question: string | null = null;
+  let answerLines: string[] = [];
+  const flush = () => {
+    if (question !== null && answerLines.length > 0) {
+      pairs.push({ question, answer: answerLines.join(' ') });
+    }
+    question = null;
+    answerLines = [];
+  };
+  for (const line of section.split('\n')) {
+    const match = line.match(/^\*\*(.+?)\*\*\s*$/);
+    if (match) {
+      flush();
+      question = stripMd(match[1]);
+    } else if (question !== null && line.trim() !== '') {
+      answerLines.push(stripMd(line.trim()));
+    }
+  }
+  flush();
+  if (pairs.length === 0) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: pairs.map(pair => ({
+      '@type': 'Question',
+      name: pair.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: pair.answer,
+      },
+    })),
+  };
+})();
 const path =
   kind === 'post' && post
     ? blogPostPath(post.data.category, post.data.slug)
@@ -178,6 +231,13 @@ const relatedPosts =
       },
     }}
   >
+    {faqSchema && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(faqSchema)}
+        is:inline
+      ></script>
+    )}
     <div class="mx-auto max-w-[85rem] px-4 pt-6 pb-16 sm:px-6 lg:px-8 lg:pt-10">
       <nav class="mb-6 text-sm text-neutral-500 dark:text-neutral-400">
         <a

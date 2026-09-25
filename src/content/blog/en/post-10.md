@@ -9,11 +9,17 @@ authorImageAlt: 'FerruleX author'
 pubDate: 2026-09-24
 cardImage: '@/images/products/p04-17-ss-fitting.jpg'
 cardImageAlt: 'Single and double ferrule stainless compression fittings compared'
-readTime: 9
+readTime: 5
 tags: ['double ferrule', 'single ferrule', 'compression fittings', 'DIN 2353']
 ---
 
 A compression joint can only fail two ways: at the seal or at the grip. **Single-ferrule** and **double-ferrule** fittings divide that work differently, and the difference decides which one belongs on your line — and what the joint costs you over its service life.
+
+> **Key takeaways**
+>
+> - A compression joint can only fail at the seal or at the grip: single-ferrule fittings make one ring do both jobs, while double-ferrule fittings split the work between a sealing front ring and a gripping back ring.
+> - Standard ferrule fittings are rated up to ~11,000 psig (760 bar) in stainless, medium-pressure designs reach 20,000 psig (1378 bar), and cone-and-thread styles go to 60,000 psig (4134 bar) — but the body rating is never the assembly rating.
+> - Ferrules deform permanently on first makeup, so remaking a joint without replacing the ferrules — or mixing ferrule brands in one fitting — is how compression joints leak.
 
 ## The anatomy of a ferrule joint
 
@@ -21,7 +27,7 @@ Every ferrule compression fitting has the same cast of parts: a **body**, a thre
 
 ## How a single-ferrule fitting works
 
-One ring does both jobs. As you tighten the nut, the single ferrule bites into the tube OD and seals against the body nose in the same stroke. The stack-up is simple — nut, ferrule, body — with fewer parts, faster assembly and a lower price. DIN 2353 bite-type designs and progressive-ring (EO-style) fittings are the common single-ferrule patterns, and they serve general hydraulic and process lines well inside their rated pressures.
+One ring does both jobs. As you tighten the nut, the single ferrule bites into the tube OD and seals against the body nose in the same stroke. The stack-up is simple — nut, ferrule, body — with fewer parts, faster assembly and a lower price. [DIN 2353](https://www.dinmedia.de/en/standard/din-2353/169118397) bite-type designs and progressive-ring (EO-style) fittings are the common single-ferrule patterns, and they serve general hydraulic and process lines well inside their rated pressures.
 
 ## How a double-ferrule fitting works
 

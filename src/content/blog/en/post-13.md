@@ -9,17 +9,23 @@ authorImageAlt: 'FerruleX author'
 pubDate: 2026-09-27
 cardImage: '@/images/products/p02-04-ss-tri-clamp-corrugated-hose.jpg'
 cardImageAlt: 'Tri-clamp ferrule end on a stainless corrugated hose assembly'
-readTime: 9
+readTime: 5
 tags: ['tri clamp', 'sanitary fittings', 'tri clover', 'ferrule sizes']
 ---
 
 A "1.5 inch" **tri-clamp fitting** measures almost 2 inches across its flange — because tri-clamp sizes are named by **tube outside diameter**, not by the face the clamp actually grips. That single fact causes most ordering mistakes on sanitary lines, and it is why measuring the wrong dimension sends you home with the wrong clamp.
 
+> **Key takeaways**
+>
+> - Tri-clamp sizes are named by tube outside diameter, not by the flange the clamp grips — a "1.5 inch" tri-clamp fitting measures 1.984" (50.4 mm) across its flange.
+> - Clamp sizes share ferrules: ½-inch and ¾-inch tube both use the ¾-inch clamp, and 1-inch and 1.5-inch tube both use the 1.5-inch clamp, so flange OD alone cannot tell the tube sizes apart.
+> - A single-hinge 1.5-inch tri-clamp is typically listed around 500 psi at 70 °F but only roughly 250 psi at 250 °F — and the real rating always belongs to the lowest-rated component of the whole stack.
+
 ## What a tri-clamp joint is
 
 Three parts make the connection: two identical **ferrules** (a short tube stub with a raised flange), a **gasket** that sits between the ferrule faces in the bore, and a **clamp** that pulls the flanges together around it. No threads, no weld at the joint — which is exactly why food, beverage, dairy, brewery and bioprocess lines use it. A trained operator breaks the joint down for CIP or SIP cleaning in seconds, and a made-up connection leaves no crevices where product can lodge.
 
-The design dates to the Alfa Laval **Tri-Clover** trademark; "tri-clamp" became the generic term after Ladish popularized the clamp style. Today both names cover the same sanitary clamp connection, built to 3-A sanitary standards in 304 or 316L stainless.
+The design dates to the Alfa Laval **Tri-Clover** trademark; "tri-clamp" became the generic term after Ladish popularized the clamp style. Today both names cover the same sanitary clamp connection, built to [3-A sanitary standards](https://www.3-a.org/standards) in 304 or 316L stainless.
 
 ## The size chart
 
@@ -40,7 +46,7 @@ Two traps hide in this table. First, the flange runs roughly ½" larger than the
 2. Compare with the chart: ~0.984" means a ¾" clamp size; ~1.984" means 1.5" clamp size; ~2.516" means 2".
 3. Hit a shared-flange pair (1.984")? Measure the tube OD to split 1" (25.4 mm) from 1.5" (38.1 mm), or read the bore.
 
-If you are ordering adapters into a mixed inch/metric system, verify both sides' standards before assembly — DIN 32676 metric ferrules do not interchange with inch tri-clamp even when the flange looks close.
+If you are ordering adapters into a mixed inch/metric system, verify both sides' standards before assembly — [DIN 32676](https://www.dinmedia.de/en/standard/din-32676/392760456) metric ferrules do not interchange with inch tri-clamp even when the flange looks close.
 
 ## Clamps and pressure ratings
 
