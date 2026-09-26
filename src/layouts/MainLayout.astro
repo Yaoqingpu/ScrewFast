@@ -2,6 +2,7 @@
 // Importing necessary components
 import Meta from '@components/Meta.astro';
 import Navbar from '@components/sections/navbar&footer/Navbar.astro';
+import TopContactBar from '@components/sections/navbar&footer/TopContactBar.astro';
 import FooterSection from '@components/sections/navbar&footer/FooterSection.astro';
 import CookieBanner from '@components/CookieBanner.astro';
 import { SITE } from '@data/constants';
@@ -107,11 +108,12 @@ interface Props {
     >
       Skip to content
     </a>
+    <TopContactBar />
     {/*
     Setting up the main structure of the page.
     The Navbar is placed at the top, with a slot for the main content and FooterSection at the bottom.
     */}
-    <div class="mx-auto w-full max-w-(--breakpoint-2xl) grow px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto w-full max-w-(--breakpoint-2xl) grow px-4 pt-3 sm:px-6 lg:px-8">
       <Navbar />
       <main id="main-content">
         <slot />
