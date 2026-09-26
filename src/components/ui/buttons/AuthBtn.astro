@@ -6,21 +6,23 @@ const { title } = Astro.props;
 interface Props {
   title: string;
 }
-// Define CSS classes for styling the button
-const baseClasses =
-  'inline-flex w-full items-center justify-center gap-x-2 rounded-lg px-4 py-3 text-sm font-bold text-neutral-700 focus-visible:ring-3 outline-hidden transition duration-300';
-const borderClasses = 'border border-transparent';
-const bgColorClasses = 'bg-blue-600 dark:focus:outline-hidden';
-const hoverClasses = 'hover:bg-blue-700';
-const fontSizeClasses = '2xl:text-base';
-const disabledClasses = 'disabled:pointer-events-none disabled:opacity-50';
-const ringClasses = 'ring-zinc-500 dark:ring-zinc-200';
+const classes =
+  'group inline-flex w-full items-center justify-center gap-x-2 rounded-xl bg-blue-600 px-5 py-3.5 text-sm font-semibold text-white shadow-sm shadow-blue-600/25 transition duration-300 hover:bg-blue-700 hover:shadow-md focus-visible:ring-3 focus-visible:ring-blue-500/40 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60';
 ---
 
-{/* Styled submit button with dynamic title */}
-<button
-  type="submit"
-  class={`${baseClasses} ${borderClasses} ${bgColorClasses} ${hoverClasses} ${fontSizeClasses} ${disabledClasses} ${ringClasses}`}
->
+{/* Styled submit button with dynamic title and arrow */}
+<button type="submit" class={classes}>
   {title}
+  <svg
+    class="size-4 transition-transform duration-300 group-hover:translate-x-0.5"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="m9 18 6-6-6-6"></path>
+  </svg>
 </button>

@@ -72,6 +72,81 @@ function respond(
   return Response.redirect(target, 303);
 }
 
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+interface EmailRow {
+  label: string;
+  value: string;
+}
+
+/**
+ * Renders a clean, minimal notification email (light background, white card,
+ * blue header) that is safe for both the RFQ and newsletter flows.
+ */
+function renderEmailHtml(opts: {
+  eyebrow: string;
+  title: string;
+  rows: EmailRow[];
+  message?: string;
+  footer: string;
+}): string {
+  const rowHtml = opts.rows
+    .map(row => {
+      const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(row.value);
+      const valueHtml = isEmail
+        ? `<a href="mailto:${escapeHtml(row.value)}" style="color:#2563eb;text-decoration:none;">${escapeHtml(row.value)}</a>`
+        : escapeHtml(row.value);
+      return `
+        <tr>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f2f5;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#94a3b8;width:120px;vertical-align:top;">${escapeHtml(row.label)}</td>
+          <td style="padding:10px 0;border-bottom:1px solid #f0f2f5;font-size:14px;color:#1f2937;vertical-align:top;">${valueHtml}</td>
+        </tr>`;
+    })
+    .join('');
+
+  const messageHtml = opts.message
+    ? `
+        <div style="margin-top:20px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;margin-bottom:6px;">Message</div>
+          <div style="font-size:14px;line-height:1.6;color:#1f2937;white-space:pre-wrap;">${escapeHtml(opts.message)}</div>
+        </div>`
+    : '';
+
+  return `<!doctype html>
+<html>
+<body style="margin:0;padding:0;background:#f4f6f8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6f8;padding:24px 12px;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
+          <tr>
+            <td style="background:#2563eb;padding:20px 24px;border-radius:12px 12px 0 0;">
+              <div style="font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#dbeafe;">${escapeHtml(opts.eyebrow)}</div>
+              <div style="font-size:20px;font-weight:700;color:#ffffff;margin-top:4px;">${escapeHtml(opts.title)}</div>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#ffffff;padding:24px;border-radius:0 0 12px 12px;border:1px solid #e5e7eb;border-top:0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rowHtml}</table>
+              ${messageHtml}
+              <div style="margin-top:20px;font-size:12px;line-height:1.6;color:#94a3b8;">${escapeHtml(opts.footer)}</div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
 export const onRequestPost = async ({
   request,
   env,
@@ -107,8 +182,12 @@ export const onRequestPost = async ({
     );
   }
 
-  const sendSubmission = async (subject: string, text: string) => {
-    await sendMail(env, { subject, text, replyTo: email });
+  const sendSubmission = async (
+    subject: string,
+    text: string,
+    html: string
+  ) => {
+    await sendMail(env, { subject, text, html, replyTo: email });
   };
 
   // Newsletter signup: only the email is required.
@@ -116,10 +195,17 @@ export const onRequestPost = async ({
     if (!email || !EMAIL_PATTERN.test(email)) {
       return respond(request, 400, 'Please provide a valid email address.');
     }
+    const newsletterSubmitted = new Date().toISOString();
     try {
       await sendSubmission(
         `Newsletter signup: ${email}`,
-        `New newsletter subscriber: ${email}\nSubmitted: ${new Date().toISOString()}`
+        `New newsletter subscriber: ${email}\nSubmitted: ${newsletterSubmitted}`,
+        renderEmailHtml({
+          eyebrow: 'FerruleX',
+          title: 'Newsletter signup',
+          rows: [{ label: 'Email', value: email }],
+          footer: `Submitted: ${newsletterSubmitted}`,
+        })
       );
     } catch (error) {
       console.error('Newsletter SMTP error:', error);
@@ -144,7 +230,9 @@ export const onRequestPost = async ({
   }
 
   const displayName = name || 'RFQ visitor';
-  const subject = `${topic || 'RFQ'} from ${displayName} <${email}>`;
+  const submittedAt = new Date().toISOString();
+  const topicLabel = topic && topic.toLowerCase() !== 'rfq' ? topic : 'RFQ';
+  const subject = `New ${topicLabel} — ${displayName}`;
   const text = [
     `Name: ${displayName}`,
     `Email: ${email}`,
@@ -154,13 +242,25 @@ export const onRequestPost = async ({
     'Message:',
     details,
     '',
-    `Submitted: ${new Date().toISOString()}`,
+    `Submitted: ${submittedAt}`,
   ]
     .filter(line => line !== null)
     .join('\n');
+  const html = renderEmailHtml({
+    eyebrow: 'FerruleX',
+    title: `New ${topicLabel}`,
+    rows: [
+      { label: 'Name', value: displayName },
+      { label: 'Email', value: email },
+      ...(company ? [{ label: 'Company', value: company }] : []),
+      ...(topic ? [{ label: 'Topic', value: topic }] : []),
+    ],
+    message: details,
+    footer: `Reply directly to this email to respond to ${displayName}. Submitted: ${submittedAt}`,
+  });
 
   try {
-    await sendSubmission(subject, text);
+    await sendSubmission(subject, text, html);
   } catch (error) {
     console.error('RFQ SMTP error:', error);
     return respond(
@@ -258,10 +358,14 @@ function encodeHeader(value: string): string {
     : value;
 }
 
-async function sendMail(
-  env: Env,
-  mail: { subject: string; text: string; replyTo: string }
-): Promise<void> {
+interface MailPayload {
+  subject: string;
+  text: string;
+  html: string;
+  replyTo: string;
+}
+
+async function sendMail(env: Env, mail: MailPayload): Promise<void> {
   if (env.EMAIL_API_TOKEN) {
     return sendViaEmailService(env, mail);
   }
@@ -269,10 +373,7 @@ async function sendMail(
 }
 
 /** Cloudflare Email Service REST API — no SMTP, no third-party account. */
-async function sendViaEmailService(
-  env: Env,
-  mail: { subject: string; text: string; replyTo: string }
-): Promise<void> {
+async function sendViaEmailService(env: Env, mail: MailPayload): Promise<void> {
   const accountId = env.CLOUDFLARE_ACCOUNT_ID || ACCOUNT_ID;
   const response = await fetch(
     `https://api.cloudflare.com/client/v4/accounts/${accountId}/email/sending/send`,
@@ -290,6 +391,7 @@ async function sendViaEmailService(
         },
         subject: mail.subject,
         text: mail.text,
+        html: mail.html,
         reply_to: mail.replyTo,
       }),
     }
@@ -310,10 +412,7 @@ async function sendViaEmailService(
   }
 }
 
-async function sendSmtpMail(
-  env: Env,
-  mail: { subject: string; text: string; replyTo: string }
-): Promise<void> {
+async function sendSmtpMail(env: Env, mail: MailPayload): Promise<void> {
   const port = Number(env.SMTP_PORT || 465);
 
   if (port !== 587) {
@@ -338,7 +437,7 @@ async function sendSmtpMail(
 async function smtpSession(
   env: Env,
   port: number,
-  mail: { subject: string; text: string; replyTo: string },
+  mail: MailPayload,
   useStartTls: boolean
 ): Promise<void> {
   const from = env.MAIL_FROM || env.SMTP_USER!;
@@ -369,7 +468,12 @@ async function smtpSession(
     await smtp.send(`RCPT TO:<${to}>`, '250');
     await smtp.send('DATA', '354');
 
-    // Base64 body: immune to CRLF and dot-stuffing edge cases.
+    // Multipart/alternative (plain text + HTML), each part base64-encoded so
+    // the body is immune to CRLF and dot-stuffing edge cases.
+    const boundary =
+      'FerruleX_' +
+      Math.random().toString(16).slice(2) +
+      Date.now().toString(16);
     const message = [
       `From: FerruleX Website <${from}>`,
       `To: ${to}`,
@@ -377,10 +481,19 @@ async function smtpSession(
       `Date: ${new Date().toUTCString()}`,
       `Reply-To: ${mail.replyTo}`,
       'MIME-Version: 1.0',
+      `Content-Type: multipart/alternative; boundary="${boundary}"`,
+      '',
+      `--${boundary}`,
       'Content-Type: text/plain; charset=utf-8',
       'Content-Transfer-Encoding: base64',
       '',
       utf8ToBase64(mail.text),
+      `--${boundary}`,
+      'Content-Type: text/html; charset=utf-8',
+      'Content-Transfer-Encoding: base64',
+      '',
+      utf8ToBase64(mail.html),
+      `--${boundary}--`,
     ].join('\r\n');
     await smtp.send(`${message}\r\n.`, '250');
 
